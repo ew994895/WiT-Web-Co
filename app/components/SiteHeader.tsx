@@ -1,11 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const navigation = [
-  ["Work", "#work"],
-  ["Services", "#services"],
-  ["About", "#about"],
+  ["Work", "/work"],
+  ["Services & Pricing", "/services"],
+  ["About", "/#about"],
 ];
 
 export function SiteHeader() {
@@ -56,10 +57,10 @@ export function SiteHeader() {
 
   return (
     <header className="site-header">
-      <a className="wordmark" href="#top" aria-label="WiT Web Co home" onClick={closeMenu}>
+      <Link className="wordmark" href="/" aria-label="WiT Web Co home" onClick={closeMenu}>
         <span>WiT</span>
         <small>WEB CO.</small>
-      </a>
+      </Link>
 
       <button
         ref={buttonRef}
@@ -81,9 +82,9 @@ export function SiteHeader() {
         aria-label="Main navigation"
       >
         {navigation.map(([label, href]) => (
-          <a href={href} onClick={closeMenu} key={href}>{label}</a>
+          <Link href={href} onClick={closeMenu} key={href}>{label}</Link>
         ))}
-        <a className="nav-cta" href="#contact" onClick={closeMenu}>Let&apos;s talk</a>
+        <Link className="nav-cta" href="/#contact" onClick={closeMenu}>Let&apos;s talk</Link>
       </nav>
     </header>
   );

@@ -1,4 +1,5 @@
 import { headers } from "next/headers";
+import type { Metadata } from "next";
 import "./globals.css";
 
 const title = "WiT Web Co. — Websites with wit, built to work";
@@ -20,14 +21,43 @@ async function getRequestBaseUrl() {
   }
 }
 
+export async function generateMetadata(): Promise<Metadata> {
+  const baseUrl = await getRequestBaseUrl();
+
+  return {
+    metadataBase: baseUrl,
+    title,
+    description,
+    alternates: { canonical: "/" },
+    icons: { icon: { url: "/icon", type: "image/png", sizes: "64x64" } },
+    openGraph: {
+      title,
+      description: "Strategy, web design, and development for growing brands ready to look sharp and mean business.",
+      type: "website",
+      siteName: "WiT Web Co.",
+      url: "/",
+      images: [{
+        url: "/og.png",
+        width: 1792,
+        height: 935,
+        alt: "WiT Web Co. — Websites with wit. Built to work.",
+      }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: "Strategy, web design, and development for growing brands ready to look sharp and mean business.",
+      images: ["/og.png"],
+    },
+  };
+}
+
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const baseUrl = await getRequestBaseUrl();
-  const canonicalUrl = new URL("/", baseUrl).toString();
-  const socialImageUrl = new URL("/og.png", baseUrl).toString();
   const contactEmail = process.env.CONTACT_EMAIL;
   const structuredData = {
     "@context": "https://schema.org",
@@ -50,30 +80,11 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <head>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={canonicalUrl} />
-        <link rel="icon" href="/icon" type="image/png" sizes="64x64" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content="Strategy, web design, and development for growing brands ready to look sharp and mean business." />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="WiT Web Co." />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content={socialImageUrl} />
-        <meta property="og:image:width" content="1792" />
-        <meta property="og:image:height" content="935" />
-        <meta property="og:image:alt" content="WiT Web Co. — Websites with wit. Built to work." />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content="Strategy, web design, and development for growing brands ready to look sharp and mean business." />
-        <meta name="twitter:image" content={socialImageUrl} />
+      <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
-      </head>
-      <body>
         {children}
       </body>
     </html>

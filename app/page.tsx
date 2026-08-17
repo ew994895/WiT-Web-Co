@@ -1,32 +1,7 @@
+import Link from "next/link";
 import { ContactForm } from "./components/ContactForm";
+import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
-
-const services = [
-  {
-    number: "01",
-    title: "Strategy & positioning",
-    body: "Clear goals, sharp messaging, and a site plan built around what your audience actually needs.",
-    tags: ["Discovery", "Content direction", "Site architecture"],
-  },
-  {
-    number: "02",
-    title: "Web design",
-    body: "Distinctive, accessible interfaces that feel unmistakably yours on every screen.",
-    tags: ["UI/UX", "Responsive design", "Design systems"],
-  },
-  {
-    number: "03",
-    title: "Development",
-    body: "Fast, flexible builds with clean foundations and none of the mystery-box handoff.",
-    tags: ["Front-end", "CMS-ready", "Performance"],
-  },
-  {
-    number: "04",
-    title: "Launch & grow",
-    body: "A smooth launch, practical training, and thoughtful support when your business evolves.",
-    tags: ["Quality assurance", "Analytics", "Ongoing support"],
-  },
-];
 
 const steps = [
   ["01", "Listen", "We get close to the business, the audience, and what success should look like."],
@@ -54,7 +29,7 @@ export default function Home() {
           </p>
           <div className="hero-actions">
             <a className="button button-dark" href="#contact">Start a project <span aria-hidden="true">↗</span></a>
-            <a className="text-link" href="#work">See our work <span aria-hidden="true">↓</span></a>
+            <Link className="text-link" href="/services">Explore services &amp; pricing <span aria-hidden="true">↗</span></Link>
           </div>
         </div>
 
@@ -62,13 +37,13 @@ export default function Home() {
           <div className="orbit orbit-one" />
           <div className="orbit orbit-two" />
           <div className="browser-card">
-            <div className="browser-bar"><i /><i /><i /><span>witweb.co / selected-work</span></div>
+            <div className="browser-bar"><i /><i /><i /><span>witweb.co / services</span></div>
             <div className="browser-body">
-              <p>FEATURED / 2026</p>
-              <div className="browser-title">Ideas,<br />made <b>real.</b></div>
+              <p>FROM FIRST IDEA TO LAUNCH</p>
+              <div className="browser-title">Plan. Design.<br /><b>Build.</b></div>
               <div className="browser-grid">
-                <article><span>01</span><strong>RankIt</strong><small>Product design</small></article>
-                <article><span>02</span><strong>OrthoForge</strong><small>Brand + web</small></article>
+                <article><span>01</span><strong>Launch site</strong><small>Focused + fast</small></article>
+                <article><span>02</span><strong>Growth site</strong><small>Custom + scalable</small></article>
               </div>
             </div>
           </div>
@@ -92,77 +67,33 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="work-section" id="work" aria-labelledby="work-title">
-        <div className="section-heading section-shell">
+      <section className="offer-preview" aria-labelledby="offer-title">
+        <div className="offer-heading section-shell">
           <div>
-            <p className="section-kicker">Selected work</p>
-            <h2 id="work-title">Built with purpose.<br /><em>Styled with nerve.</em></h2>
+            <p className="section-kicker light">Ways to work together</p>
+            <h2 id="offer-title">Choose a clear<br /><em>place to start.</em></h2>
           </div>
-          <p>A few products and digital experiences shaped to feel clear, credible, and alive.</p>
+          <p>Focused options for launching something new, improving what you have, or building beyond the usual brochure site.</p>
         </div>
-
-        <div className="project-list section-shell">
-          <article className="project project-rankit">
-            <div className="project-copy">
-              <span className="project-number">01 / CONCEPT PRODUCT</span>
-              <h3>RankIt</h3>
-              <p>A social ranking experience that turns opinions into playful competition.</p>
-              <div className="tag-row"><span>Product design</span><span>Front-end</span><span>Interaction</span></div>
-            </div>
-            <div className="project-art rankit-art" aria-hidden="true">
-              <div className="rank-card rank-card-back"><span>02</span><b>Hot take</b><small>Most underrated movie?</small></div>
-              <div className="rank-card rank-card-front"><span>01</span><b>Rank your<br />favorites.</b><small>Invite friends →</small></div>
-              <div className="score-bubble">9.4</div>
-            </div>
+        <div className="offer-grid section-shell">
+          <article>
+            <span>01</span>
+            <h3>Launch site</h3>
+            <p>A sharp, focused website for a new business, campaign, event, or offer.</p>
           </article>
-
-          <article className="project project-ortho">
-            <div className="project-copy">
-              <span className="project-number">02 / CONCEPT BRAND + WEBSITE</span>
-              <h3>OrthoForge</h3>
-              <p>A confident identity and digital home built around movement, care, and progress.</p>
-              <div className="tag-row"><span>Brand system</span><span>Web design</span><span>Development</span></div>
-            </div>
-            <div className="project-art ortho-art" aria-hidden="true">
-              <div className="ortho-sun" />
-              <div className="ortho-copy"><span>ORTHO / FORGE</span><strong>MOVE<br />FORWARD.</strong></div>
-              <div className="ortho-pill">Expert care · Human approach</div>
-            </div>
+          <article>
+            <span>02</span>
+            <h3>Growth site</h3>
+            <p>A custom multi-page website built to make your business clearer and more credible.</p>
           </article>
-
-          <article className="project project-portfolio">
-            <div className="project-copy">
-              <span className="project-number">03 / INDEPENDENT PORTFOLIO</span>
-              <h3>Portfolio</h3>
-              <p>A personality-led portfolio that makes the work easy to explore and hard to forget.</p>
-              <div className="tag-row"><span>Creative direction</span><span>Web design</span><span>Motion</span></div>
-            </div>
-            <div className="project-art portfolio-art" aria-hidden="true">
-              <div className="folio-line">ETHAN / WITKOWSKI</div>
-              <div className="folio-type">Make it<br /><i>memorable.</i></div>
-              <div className="folio-cursor">VIEW WORK ↗</div>
-            </div>
+          <article>
+            <span>03</span>
+            <h3>Custom build</h3>
+            <p>A tailored digital experience when your idea needs more than a standard website.</p>
           </article>
         </div>
-      </section>
-
-      <section className="services-section" id="services" aria-labelledby="services-title">
-        <div className="services-intro section-shell">
-          <p className="section-kicker light">What we do</p>
-          <h2 id="services-title">From blank page<br />to <em>big impact.</em></h2>
-          <p>One focused partner for the thinking, the look, and the build.</p>
-        </div>
-        <div className="service-list section-shell">
-          {services.map((service) => (
-            <article className="service-item" key={service.number}>
-              <span>{service.number}</span>
-              <h3>{service.title}</h3>
-              <p>{service.body}</p>
-              <div className="service-tags">
-                {service.tags.map((tag) => <small key={tag}>{tag}</small>)}
-              </div>
-            </article>
-          ))}
+        <div className="offer-action section-shell">
+          <Link className="button button-lime" href="/services">See services &amp; suggested pricing <span aria-hidden="true">↗</span></Link>
         </div>
       </section>
 
@@ -217,11 +148,7 @@ export default function Home() {
         <ContactForm contactEmail={contactEmail} />
       </section>
       </main>
-      <footer>
-        <a className="wordmark footer-mark" href="#top" aria-label="Back to top"><span>WiT</span><small>WEB CO.</small></a>
-        <p>Independent web design &amp; development · West Chester, PA</p>
-        <div><span>© 2026 WiT Web Co.</span><a href="#top">Back to top ↑</a></div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
