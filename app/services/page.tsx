@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 
@@ -72,7 +72,7 @@ export default function ServicesPage() {
             <h1>Clear options.<br /><em>Flexible scope.</em></h1>
             <div>
               <p>Start with a useful ballpark, then shape the right project around your goals, timeline, and content.</p>
-              <Link className="button button-dark" href="/#contact">Talk through your project <span aria-hidden="true">↗</span></Link>
+              <a className="button button-dark" href="/#contact">Talk through your project <span aria-hidden="true">↗</span></a>
             </div>
           </div>
         </section>
@@ -102,7 +102,7 @@ export default function ServicesPage() {
                 <ul>
                   {item.includes.map((included) => <li key={included}>{included}</li>)}
                 </ul>
-                <Link className={item.featured ? "button button-lime" : "text-link"} href="/#contact">Ask about this option <span aria-hidden="true">↗</span></Link>
+                <a className={item.featured ? "button button-lime" : "text-link"} href="/#contact">Ask about this option <span aria-hidden="true">↗</span></a>
               </article>
             ))}
           </div>
@@ -128,7 +128,7 @@ export default function ServicesPage() {
         <section className="page-cta section-shell">
           <p className="section-kicker">Not sure which one fits?</p>
           <h2>Bring the rough idea.<br /><em>We&apos;ll find the shape.</em></h2>
-          <Link className="button button-dark" href="/#contact">Start a conversation <span aria-hidden="true">↗</span></Link>
+          <a className="button button-dark" href="/#contact">Start a conversation <span aria-hidden="true">↗</span></a>
         </section>
       </main>
       <SiteFooter />

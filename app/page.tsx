@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ContactForm } from "./components/ContactForm";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
@@ -29,7 +28,7 @@ export default function Home() {
           </p>
           <div className="hero-actions">
             <a className="button button-dark" href="#contact">Start a project <span aria-hidden="true">↗</span></a>
-            <Link className="text-link" href="/services">Explore services &amp; pricing <span aria-hidden="true">↗</span></Link>
+            <a className="text-link" href="/services">Explore services &amp; pricing <span aria-hidden="true">↗</span></a>
           </div>
         </div>
 
@@ -93,7 +92,7 @@ export default function Home() {
           </article>
         </div>
         <div className="offer-action section-shell">
-          <Link className="button button-lime" href="/services">See services &amp; suggested pricing <span aria-hidden="true">↗</span></Link>
+          <a className="button button-lime" href="/services">See services &amp; suggested pricing <span aria-hidden="true">↗</span></a>
         </div>
       </section>
 

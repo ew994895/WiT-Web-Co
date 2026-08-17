@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 
@@ -35,7 +35,7 @@ export default function WorkPage() {
             <h1>Purpose first.<br /><em>Nerve included.</em></h1>
             <div>
               <p>A selection of concept products, brand explorations, and independent work built to be clear, useful, and memorable.</p>
-              <Link className="text-link" href="/services">See what we can build for you <span aria-hidden="true">↗</span></Link>
+              <a className="text-link" href="/services">See what we can build for you <span aria-hidden="true">↗</span></a>
             </div>
           </div>
         </section>
@@ -89,7 +89,7 @@ export default function WorkPage() {
         <section className="page-cta section-shell">
           <p className="section-kicker">Your project could be next</p>
           <h2>Have an idea worth<br /><em>making real?</em></h2>
-          <Link className="button button-dark" href="/#contact">Start a conversation <span aria-hidden="true">↗</span></Link>
+          <a className="button button-dark" href="/#contact">Start a conversation <span aria-hidden="true">↗</span></a>
         </section>
       </main>
       <SiteFooter />

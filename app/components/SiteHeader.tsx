@@ -1,6 +1,6 @@
 "use client";
+/* eslint-disable @next/next/no-html-link-for-pages */
 
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const navigation = [
@@ -57,10 +57,10 @@ export function SiteHeader() {
 
   return (
     <header className="site-header">
-      <Link className="wordmark" href="/" aria-label="WiT Web Co home" onClick={closeMenu}>
+      <a className="wordmark" href="/" aria-label="WiT Web Co home" onClick={closeMenu}>
         <span>WiT</span>
         <small>WEB CO.</small>
-      </Link>
+      </a>
 
       <button
         ref={buttonRef}
@@ -82,9 +82,9 @@ export function SiteHeader() {
         aria-label="Main navigation"
       >
         {navigation.map(([label, href]) => (
-          <Link href={href} onClick={closeMenu} key={href}>{label}</Link>
+          <a href={href} onClick={closeMenu} key={href}>{label}</a>
         ))}
-        <Link className="nav-cta" href="/#contact" onClick={closeMenu}>Let&apos;s talk</Link>
+        <a className="nav-cta" href="/#contact" onClick={closeMenu}>Let&apos;s talk</a>
       </nav>
     </header>
   );
