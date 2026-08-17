@@ -4,12 +4,12 @@ import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 
 export const metadata: Metadata = {
-  title: "Services & Pricing — WiT Web Co.",
-  description: "Website strategy, design, and development packages with helpful suggested investment ranges.",
+  title: "Digital Services & Pricing — WiT Web Co.",
+  description: "Web design and development, iOS and Android apps, graphic design, photography, SEO, and social media marketing.",
   alternates: { canonical: "/services" },
   openGraph: {
-    title: "Services & Pricing — WiT Web Co.",
-    description: "Website strategy, design, and development packages with helpful suggested investment ranges.",
+    title: "Digital Services & Pricing — WiT Web Co.",
+    description: "Websites, mobile apps, creative, and digital marketing services for growing businesses.",
     type: "website",
     siteName: "WiT Web Co.",
     url: "/services",
@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Services & Pricing — WiT Web Co.",
-    description: "Website strategy, design, and development packages with helpful suggested investment ranges.",
+    title: "Digital Services & Pricing — WiT Web Co.",
+    description: "Websites, mobile apps, creative, and digital marketing services for growing businesses.",
     images: [],
   },
 };
@@ -43,21 +43,22 @@ const packages = [
   },
   {
     number: "03",
-    name: "Custom build",
-    fit: "For web apps, interactive tools, advanced integrations, or an idea outside the usual box.",
-    range: "$7,500–$15,000+",
+    name: "Digital product",
+    fit: "For iOS and Android apps, web apps, advanced integrations, or an idea outside the usual box.",
+    range: "$7,500+",
     timeline: "Scoped around the idea",
-    includes: ["Product and experience strategy", "Custom interface design", "Advanced front-end development", "Integrations and workflows", "Testing and launch planning"],
+    includes: ["Product and experience strategy", "Custom interface design", "iOS, Android, or web development", "Integrations and workflows", "Testing and release planning"],
   },
 ];
 
-const capabilities = [
-  ["Strategy", "Discovery, positioning, content direction, and a clear plan before pixels."],
-  ["Design", "Distinctive interfaces, responsive layouts, and reusable visual systems."],
-  ["Development", "Fast, accessible builds with clean foundations and practical handoff."],
-  ["Brand support", "A focused visual refresh when the website needs a stronger identity."],
-  ["Care plans", "Updates, refinements, and support from $150–$500 per month."],
-  ["Focused sprints", "Small improvements or one-off builds quoted around a tight goal."],
+const services = [
+  ["Web Design", "Creative, responsive, and accessible interfaces that make your brand clearer and move visitors toward action.", "UX / UI · Responsive"],
+  ["Graphic Design", "Brand identities, campaign graphics, and print-ready collateral with a distinctive, consistent visual point of view.", "Brand · Digital · Print"],
+  ["Photography", "Purposeful brand, product, and team imagery created for websites, social content, flyers, and large-format print.", "Direction · Production"],
+  ["Web Development", "Fast, accessible websites and progressive web apps built on clean, maintainable foundations.", "Websites · PWAs"],
+  ["iOS & Android Apps", "Product strategy, UX/UI, mobile development, testing, and release support for useful apps people want to keep using.", "Product · Mobile"],
+  ["SEO", "Technical setup, on-page optimization, content structure, and measurement designed to improve qualified discovery.", "Technical · On-page"],
+  ["Social Media Marketing", "Channel strategy, campaign creative, content systems, and reporting that build a more recognizable online presence.", "Strategy · Creative"],
 ];
 
 export default function ServicesPage() {
@@ -67,23 +68,44 @@ export default function ServicesPage() {
       <SiteHeader />
       <main id="main-content">
         <section className="inner-hero services-hero section-shell">
-          <p className="eyebrow"><span /> Services &amp; suggested pricing</p>
+          <p className="eyebrow"><span /> Creative, technology &amp; growth</p>
           <div className="inner-hero-grid">
-            <h1>Clear options.<br /><em>Flexible scope.</em></h1>
+            <h1>One studio.<br /><em>Full digital range.</em></h1>
             <div>
-              <p>Start with a useful ballpark, then shape the right project around your goals, timeline, and content.</p>
-              <a className="button button-dark" href="/#contact">Talk through your project <span aria-hidden="true">↗</span></a>
+              <p>From the first strategy session to the final launch, connect the services your business actually needs—without juggling a collection of vendors.</p>
+              <a className="button button-dark" href="#service-catalog">See every service <span aria-hidden="true">↓</span></a>
             </div>
+          </div>
+        </section>
+
+        <section className="capabilities-section service-catalog-section" id="service-catalog" aria-labelledby="capabilities-title">
+          <div className="capabilities-heading section-shell">
+            <p className="section-kicker light">What we can do</p>
+            <h2 id="capabilities-title">The strategy, the look,<br />the build, and <em>the reach.</em></h2>
+          </div>
+          <div className="capability-grid section-shell">
+            {services.map(([title, body, tags], index) => (
+              <article key={title}>
+                <span>0{index + 1}</span>
+                <h3>{title}</h3>
+                <p>{body}</p>
+                <small>{tags}</small>
+              </article>
+            ))}
+          </div>
+          <div className="catalog-action section-shell">
+            <p>Need more than one? We can shape a connected scope around your launch, campaign, or long-term growth plan.</p>
+            <a className="button button-lime" href="/#contact">Build your service mix <span aria-hidden="true">↗</span></a>
           </div>
         </section>
 
         <section className="pricing-section" aria-labelledby="pricing-title">
           <div className="section-heading section-shell">
             <div>
-              <p className="section-kicker">Three places to start</p>
-              <h2 id="pricing-title">Pick the shape that<br /><em>feels closest.</em></h2>
+              <p className="section-kicker">Common build starting points</p>
+              <h2 id="pricing-title">A useful ballpark.<br /><em>A tailored scope.</em></h2>
             </div>
-            <p>These ranges are guidance, not rigid packages. Every proposal is shaped after a short discovery conversation.</p>
+            <p>These ranges cover common website and product engagements. Creative and marketing services are scoped around the volume and support you need.</p>
           </div>
           <div className="package-grid section-shell">
             {packages.map((item) => (
@@ -109,25 +131,9 @@ export default function ServicesPage() {
           <p className="pricing-note section-shell">Final scope and price depend on content readiness, functionality, integrations, and timing. Flexible payment milestones are available.</p>
         </section>
 
-        <section className="capabilities-section" aria-labelledby="capabilities-title">
-          <div className="capabilities-heading section-shell">
-            <p className="section-kicker light">What we can do</p>
-            <h2 id="capabilities-title">The thinking, the look,<br />and <em>the build.</em></h2>
-          </div>
-          <div className="capability-grid section-shell">
-            {capabilities.map(([title, body], index) => (
-              <article key={title}>
-                <span>0{index + 1}</span>
-                <h3>{title}</h3>
-                <p>{body}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
         <section className="page-cta section-shell">
-          <p className="section-kicker">Not sure which one fits?</p>
-          <h2>Bring the rough idea.<br /><em>We&apos;ll find the shape.</em></h2>
+          <p className="section-kicker">Need one service or the whole mix?</p>
+          <h2>Bring the ambition.<br /><em>We&apos;ll build the plan.</em></h2>
           <a className="button button-dark" href="/#contact">Start a conversation <span aria-hidden="true">↗</span></a>
         </section>
       </main>

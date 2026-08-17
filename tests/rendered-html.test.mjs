@@ -28,11 +28,14 @@ test("server-renders the WiT Web Co homepage", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>WiT Web Co\. — Websites with wit, built to work<\/title>/i);
-  assert.match(html, /Websites with/);
-  assert.match(html, /Built to work/);
-  assert.match(html, /Ways to work together/);
-  assert.match(html, /Services &amp; Pricing/i);
+  assert.match(html, /<title>WiT Web Co\. — Digital work with wit, built to grow<\/title>/i);
+  assert.match(html, /Digital work with/);
+  assert.match(html, /Built to grow/);
+  assert.match(html, /Full-service digital studio/i);
+  assert.match(html, /iOS &amp; Android Apps/i);
+  assert.match(html, /Social Media Marketing/i);
+  assert.match(html, /Selected work/i);
+  assert.match(html, /OrthoForge/i);
   assert.doesNotMatch(html, /Built with purpose/);
   assert.match(html, /Have a project in mind/);
   assert.match(html, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="http:\/\/localhost(?::3000)?\/?")[^>]*>/i);
@@ -56,8 +59,12 @@ test("serves dedicated services and work pages", async () => {
 
   assert.equal(servicesResponse.status, 200);
   const servicesHtml = await servicesResponse.text();
-  assert.match(servicesHtml, /<title>Services &amp; Pricing — WiT Web Co\.<\/title>/i);
+  assert.match(servicesHtml, /<title>Digital Services &amp; Pricing — WiT Web Co\.<\/title>/i);
   assert.match(servicesHtml, /Suggested investment/i);
+  assert.match(servicesHtml, /Graphic Design/i);
+  assert.match(servicesHtml, /Photography/i);
+  assert.match(servicesHtml, /iOS &amp; Android Apps/i);
+  assert.match(servicesHtml, /Social Media Marketing/i);
   assert.match(servicesHtml, /\$1,500/);
   assert.match(servicesHtml, /\$3,500/);
   assert.match(servicesHtml, /\$7,500/);

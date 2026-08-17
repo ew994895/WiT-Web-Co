@@ -2,9 +2,9 @@ import { headers } from "next/headers";
 import type { Metadata } from "next";
 import "./globals.css";
 
-const title = "WiT Web Co. — Websites with wit, built to work";
+const title = "WiT Web Co. — Digital work with wit, built to grow";
 const description =
-  "An independent web studio creating sharp, purposeful websites and digital experiences for growing brands.";
+  "A full-service digital studio creating websites, iOS and Android apps, brand design, photography, SEO, and social campaigns for growing businesses.";
 
 async function getRequestBaseUrl() {
   const requestHeaders = await headers();
@@ -32,7 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
     icons: { icon: { url: "/icon", type: "image/png", sizes: "64x64" } },
     openGraph: {
       title,
-      description: "Strategy, web design, and development for growing brands ready to look sharp and mean business.",
+      description: "Websites, mobile apps, creative, and digital growth for businesses ready to look sharp and move with purpose.",
       type: "website",
       siteName: "WiT Web Co.",
       url: "/",
@@ -46,7 +46,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title,
-      description: "Strategy, web design, and development for growing brands ready to look sharp and mean business.",
+      description: "Websites, mobile apps, creative, and digital growth for businesses ready to look sharp and move with purpose.",
       images: ["/og.png"],
     },
   };
@@ -72,8 +72,13 @@ export default async function RootLayout({
     knowsAbout: [
       "Web strategy",
       "Web design",
-      "Front-end development",
-      "Brand systems",
+      "Web development",
+      "iOS application development",
+      "Android application development",
+      "Graphic design",
+      "Photography",
+      "Search engine optimization",
+      "Social media marketing",
     ],
     ...(contactEmail ? { email: contactEmail } : {}),
   };

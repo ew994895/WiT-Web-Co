@@ -1,7 +1,8 @@
 # WiT Web Co.
 
-The official one-page marketing site for WiT Web Co., an independent web design
-and development studio in West Chester, Pennsylvania.
+The official marketing site for WiT Web Co., a full-service digital studio in
+West Chester, Pennsylvania offering web, mobile app, creative, SEO, and social
+media services.
 
 ## What's included
 

@@ -36,10 +36,14 @@ export function ContactForm({ contactEmail }: { contactEmail?: string }) {
         <span>What do you need?</span>
         <select name="project" autoComplete="off" defaultValue="" required>
           <option value="" disabled>Choose one</option>
-          <option>New website</option>
-          <option>Website redesign</option>
-          <option>Product or web app</option>
-          <option>Brand + website</option>
+          <option>Web design or redesign</option>
+          <option>Web development</option>
+          <option>iOS or Android app</option>
+          <option>Graphic design or branding</option>
+          <option>Photography</option>
+          <option>SEO</option>
+          <option>Social media marketing</option>
+          <option>Connected multi-service project</option>
           <option>Something else</option>
         </select>
       </label>

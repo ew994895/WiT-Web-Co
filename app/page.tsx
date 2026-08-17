@@ -9,6 +9,51 @@ const steps = [
   ["04", "Launch", "We test the details, hand over the keys, and make sure you are ready to run."],
 ];
 
+const services = [
+  {
+    number: "01",
+    name: "Web Design",
+    description: "Distinctive, accessible interfaces designed to make your brand clear and every next step feel obvious.",
+    tags: ["Responsive", "UX / UI"],
+  },
+  {
+    number: "02",
+    name: "Web Development",
+    description: "Fast, maintainable websites and progressive web apps built with clean foundations and modern best practices.",
+    tags: ["Custom builds", "Web apps"],
+  },
+  {
+    number: "03",
+    name: "iOS & Android Apps",
+    description: "Useful mobile products shaped from strategy and interface design through development, testing, and release.",
+    tags: ["Product design", "App development"],
+  },
+  {
+    number: "04",
+    name: "Graphic Design",
+    description: "Original brand and campaign graphics that feel consistent, memorable, and ready for digital or print.",
+    tags: ["Brand systems", "Campaigns"],
+  },
+  {
+    number: "05",
+    name: "Photography",
+    description: "Purposeful brand, product, and team imagery made to strengthen websites, social content, flyers, and print.",
+    tags: ["Art direction", "Content"],
+  },
+  {
+    number: "06",
+    name: "SEO",
+    description: "Technical and on-page search foundations that help the right people discover your business and take action.",
+    tags: ["Technical SEO", "Content structure"],
+  },
+  {
+    number: "07",
+    name: "Social Media Marketing",
+    description: "Focused strategy, creative, and campaign support that builds a recognizable presence across social channels.",
+    tags: ["Strategy", "Creative"],
+  },
+];
+
 export default function Home() {
   const contactEmail = process.env.CONTACT_EMAIL;
 
@@ -20,11 +65,11 @@ export default function Home() {
       <main id="main-content">
       <section className="hero" id="top">
         <div className="hero-copy">
-          <p className="eyebrow"><span /> Independent web studio · West Chester, PA</p>
-          <h1>Websites with <em>wit.</em><br />Built to work.</h1>
+          <p className="eyebrow"><span /> Independent digital studio · West Chester, PA</p>
+          <h1>Digital work with <em>wit.</em><br />Built to grow.</h1>
           <p className="hero-intro">
-            Strategy, design, and development for growing brands that are ready
-            to look sharp, move fast, and mean business.
+            Websites, iOS and Android apps, brand design, content, and marketing
+            for growing businesses ready to look sharp and move with purpose.
           </p>
           <div className="hero-actions">
             <a className="button button-dark" href="#contact">Start a project <span aria-hidden="true">↗</span></a>
@@ -38,25 +83,25 @@ export default function Home() {
           <div className="browser-card">
             <div className="browser-bar"><i /><i /><i /><span>witweb.co / services</span></div>
             <div className="browser-body">
-              <p>FROM FIRST IDEA TO LAUNCH</p>
-              <div className="browser-title">Plan. Design.<br /><b>Build.</b></div>
+              <p>ONE STUDIO · STRATEGY TO LAUNCH</p>
+              <div className="browser-title">Web. Brand.<br /><b>Apps.</b></div>
               <div className="browser-grid">
-                <article><span>01</span><strong>Launch site</strong><small>Focused + fast</small></article>
-                <article><span>02</span><strong>Growth site</strong><small>Custom + scalable</small></article>
+                <article><span>01</span><strong>Web</strong><small>Sharp + responsive</small></article>
+                <article><span>02</span><strong>Mobile</strong><small>iOS + Android</small></article>
               </div>
             </div>
           </div>
-          <div className="sticker sticker-top">Small studio<br /><b>big thinking</b></div>
-          <div className="sticker sticker-bottom">NO<br /><b>BORING</b><br />WEBSITES</div>
+          <div className="sticker sticker-top">One studio<br /><b>full range</b></div>
+          <div className="sticker sticker-bottom">MAKE<br /><b>IT MEAN</b><br />BUSINESS</div>
         </div>
       </section>
 
       <div className="ticker" aria-hidden="true">
-        <div>STRATEGY <span>✦</span> WEB DESIGN <span>✦</span> DEVELOPMENT <span>✦</span> BRAND SYSTEMS <span>✦</span> STRATEGY <span>✦</span> WEB DESIGN <span>✦</span> DEVELOPMENT <span>✦</span> BRAND SYSTEMS <span>✦</span></div>
+        <div>WEB DESIGN <span>✦</span> APP DEVELOPMENT <span>✦</span> SEO <span>✦</span> GRAPHIC DESIGN <span>✦</span> PHOTOGRAPHY <span>✦</span> SOCIAL MEDIA <span>✦</span> WEB DESIGN <span>✦</span> APP DEVELOPMENT <span>✦</span> SEO <span>✦</span> GRAPHIC DESIGN <span>✦</span> PHOTOGRAPHY <span>✦</span> SOCIAL MEDIA <span>✦</span></div>
       </div>
 
       <section className="manifesto section-shell" aria-labelledby="manifesto-title">
-        <p className="section-kicker">A good website does more than sit there.</p>
+        <p className="section-kicker">A strong digital presence does more than sit there.</p>
         <div>
           <h2 id="manifesto-title">Your best digital<br />first impression.</h2>
           <p>
@@ -66,33 +111,68 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="offer-preview" aria-labelledby="offer-title">
-        <div className="offer-heading section-shell">
+      <section className="services-section" id="services" aria-labelledby="services-title">
+        <div className="services-intro section-shell">
+          <p className="section-kicker light">Full-service digital studio</p>
+          <h2 id="services-title">One partner.<br /><em>Seven ways to grow.</em></h2>
+          <p>Bring us one focused project or a connected mix of strategy, creative, technology, and growth support.</p>
+        </div>
+        <div className="service-list section-shell">
+          {services.map((service) => (
+            <article className="service-item" key={service.number}>
+              <span>{service.number}</span>
+              <h3>{service.name}</h3>
+              <p>{service.description}</p>
+              <div className="service-tags" aria-label={`${service.name} capabilities`}>
+                {service.tags.map((tag) => <small key={tag}>{tag}</small>)}
+              </div>
+            </article>
+          ))}
+        </div>
+        <div className="services-action section-shell">
+          <a className="button button-lime" href="/services">Explore services &amp; pricing <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+
+      <section className="work-section" aria-labelledby="work-title">
+        <div className="section-heading section-shell">
           <div>
-            <p className="section-kicker light">Ways to work together</p>
-            <h2 id="offer-title">Choose a clear<br /><em>place to start.</em></h2>
+            <p className="section-kicker">Selected work</p>
+            <h2 id="work-title">Ideas made<br /><em>real.</em></h2>
           </div>
-          <p>Focused options for launching something new, improving what you have, or building beyond the usual brochure site.</p>
+          <p>Product thinking, visual systems, and expressive digital experiences built to be useful and hard to forget.</p>
         </div>
-        <div className="offer-grid section-shell">
-          <article>
-            <span>01</span>
-            <h3>Launch site</h3>
-            <p>A sharp, focused website for a new business, campaign, event, or offer.</p>
+        <div className="project-list section-shell">
+          <article className="project project-rankit">
+            <div className="project-copy">
+              <span className="project-number">01 / CONCEPT PRODUCT</span>
+              <h3>RankIt</h3>
+              <p>A social ranking experience that turns opinions into playful competition.</p>
+              <div className="tag-row"><span>Product design</span><span>Front-end</span><span>Interaction</span></div>
+            </div>
+            <div className="project-art rankit-art" aria-hidden="true">
+              <div className="rank-card rank-card-back"><span>02</span><b>Hot take</b><small>Most underrated movie?</small></div>
+              <div className="rank-card rank-card-front"><span>01</span><b>Rank your<br />favorites.</b><small>Invite friends →</small></div>
+              <div className="score-bubble">9.4</div>
+            </div>
           </article>
-          <article>
-            <span>02</span>
-            <h3>Growth site</h3>
-            <p>A custom multi-page website built to make your business clearer and more credible.</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>Custom build</h3>
-            <p>A tailored digital experience when your idea needs more than a standard website.</p>
+
+          <article className="project project-ortho">
+            <div className="project-copy">
+              <span className="project-number">02 / CONCEPT BRAND + WEBSITE</span>
+              <h3>OrthoForge</h3>
+              <p>A confident identity and digital home built around movement, care, and progress.</p>
+              <div className="tag-row"><span>Brand system</span><span>Web design</span><span>Development</span></div>
+            </div>
+            <div className="project-art ortho-art" aria-hidden="true">
+              <div className="ortho-sun" />
+              <div className="ortho-copy"><span>ORTHO / FORGE</span><strong>MOVE<br />FORWARD.</strong></div>
+              <div className="ortho-pill">Expert care · Human approach</div>
+            </div>
           </article>
         </div>
-        <div className="offer-action section-shell">
-          <a className="button button-lime" href="/services">See services &amp; suggested pricing <span aria-hidden="true">↗</span></a>
+        <div className="work-action section-shell">
+          <a className="button button-dark" href="/work">Explore selected work <span aria-hidden="true">↗</span></a>
         </div>
       </section>
 
