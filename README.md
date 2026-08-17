@@ -7,7 +7,9 @@ and development studio in West Chester, Pennsylvania.
 
 - Responsive landing page and mobile navigation
 - Work, services, about, process, and contact sections
-- Accessible labels, keyboard-friendly controls, and reduced-motion support
+- Skip navigation, keyboard-contained mobile menu, visible focus states, and reduced-motion support
+- Canonical, social preview, sitemap, robots, structured data, and branded icon metadata
+- Response security headers and an automated production smoke test
 - Cloudflare-compatible production build powered by vinext
 
 ## Local development
@@ -22,8 +24,18 @@ Open `http://localhost:3000` to view the site.
 ## Production check
 
 ```bash
-npm run build
+npm run verify
 ```
 
-The contact form is intentionally in preview mode until a destination inbox is
-chosen. No visitor information is transmitted in the current version.
+## Contact inbox
+
+Copy `.env.example` to `.env.local` and replace the example address with the
+public business inbox that should receive inquiries:
+
+```bash
+CONTACT_EMAIL=hello@yourdomain.com
+```
+
+When configured, the form opens the visitor's email application with their
+inquiry ready to review and send. Without this value, the form remains in an
+honest preview mode and transmits no visitor information.

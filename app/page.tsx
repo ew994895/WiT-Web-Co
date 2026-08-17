@@ -1,6 +1,5 @@
-"use client";
-
-import { FormEvent, useEffect, useState } from "react";
+import { ContactForm } from "./components/ContactForm";
+import { SiteHeader } from "./components/SiteHeader";
 
 const services = [
   {
@@ -37,46 +36,14 @@ const steps = [
 ];
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [formNotice, setFormNotice] = useState("");
-
-  useEffect(() => {
-    document.body.classList.toggle("menu-open", menuOpen);
-    return () => document.body.classList.remove("menu-open");
-  }, [menuOpen]);
-
-  function previewInquiry(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setFormNotice("Looks good — add your preferred inbox to activate inquiries before launch.");
-  }
+  const contactEmail = process.env.CONTACT_EMAIL;
 
   return (
-    <main>
-      <header className="site-header">
-        <a className="wordmark" href="#top" aria-label="WiT Web Co home">
-          <span>WiT</span>
-          <small>WEB CO.</small>
-        </a>
+    <>
+      <a className="skip-link" href="#main-content">Skip to main content</a>
+      <SiteHeader />
 
-        <button
-          className="menu-button"
-          type="button"
-          aria-label="Toggle navigation"
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          <span />
-          <span />
-        </button>
-
-        <nav className={menuOpen ? "nav-links is-open" : "nav-links"} aria-label="Main navigation">
-          <a href="#work" onClick={() => setMenuOpen(false)}>Work</a>
-          <a href="#services" onClick={() => setMenuOpen(false)}>Services</a>
-          <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-          <a className="nav-cta" href="#contact" onClick={() => setMenuOpen(false)}>Let&apos;s talk</a>
-        </nav>
-      </header>
-
+      <main id="main-content">
       <section className="hero" id="top">
         <div className="hero-copy">
           <p className="eyebrow"><span /> Independent web studio · West Chester, PA</p>
@@ -91,7 +58,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero-showcase" aria-label="A preview of WiT Web Co projects">
+        <div className="hero-showcase" aria-hidden="true">
           <div className="orbit orbit-one" />
           <div className="orbit orbit-two" />
           <div className="browser-card">
@@ -137,7 +104,7 @@ export default function Home() {
         <div className="project-list section-shell">
           <article className="project project-rankit">
             <div className="project-copy">
-              <span className="project-number">01 / PRODUCT EXPERIENCE</span>
+              <span className="project-number">01 / CONCEPT PRODUCT</span>
               <h3>RankIt</h3>
               <p>A social ranking experience that turns opinions into playful competition.</p>
               <div className="tag-row"><span>Product design</span><span>Front-end</span><span>Interaction</span></div>
@@ -151,7 +118,7 @@ export default function Home() {
 
           <article className="project project-ortho">
             <div className="project-copy">
-              <span className="project-number">02 / BRAND + WEBSITE</span>
+              <span className="project-number">02 / CONCEPT BRAND + WEBSITE</span>
               <h3>OrthoForge</h3>
               <p>A confident identity and digital home built around movement, care, and progress.</p>
               <div className="tag-row"><span>Brand system</span><span>Web design</span><span>Development</span></div>
@@ -165,7 +132,7 @@ export default function Home() {
 
           <article className="project project-portfolio">
             <div className="project-copy">
-              <span className="project-number">03 / PERSONAL BRAND</span>
+              <span className="project-number">03 / INDEPENDENT PORTFOLIO</span>
               <h3>Portfolio</h3>
               <p>A personality-led portfolio that makes the work easy to explore and hard to forget.</p>
               <div className="tag-row"><span>Creative direction</span><span>Web design</span><span>Motion</span></div>
@@ -242,44 +209,19 @@ export default function Home() {
           <p className="section-kicker light">Have a project in mind?</p>
           <h2 id="contact-title">Let&apos;s make<br /><em>something good.</em></h2>
           <p>Share the rough idea, the big ambition, or the thing that is not working. We&apos;ll start there.</p>
-          <div className="contact-note"><span>↳</span> Usually responds within two business days.</div>
+          <div className="contact-note">
+            <span>↳</span> {contactEmail ? "Usually responds within two business days." : "Inquiry delivery is being connected before launch."}
+          </div>
         </div>
 
-        <form className="contact-form" onSubmit={previewInquiry}>
-          <label>
-            <span>Your name</span>
-            <input type="text" name="name" placeholder="How should we address you?" required />
-          </label>
-          <label>
-            <span>Email</span>
-            <input type="email" name="email" placeholder="you@company.com" required />
-          </label>
-          <label>
-            <span>What do you need?</span>
-            <select name="project" defaultValue="" required>
-              <option value="" disabled>Choose one</option>
-              <option>New website</option>
-              <option>Website redesign</option>
-              <option>Product or web app</option>
-              <option>Brand + website</option>
-              <option>Something else</option>
-            </select>
-          </label>
-          <label>
-            <span>Tell us a little more</span>
-            <textarea name="message" rows={4} placeholder="What are you building, and why now?" required />
-          </label>
-          <button className="button button-lime" type="submit">Preview inquiry <span aria-hidden="true">↗</span></button>
-          <p className="form-helper">Preview form — connect your preferred inbox before launch.</p>
-          <p className="form-notice" role="status" aria-live="polite">{formNotice}</p>
-        </form>
+        <ContactForm contactEmail={contactEmail} />
       </section>
-
+      </main>
       <footer>
         <a className="wordmark footer-mark" href="#top" aria-label="Back to top"><span>WiT</span><small>WEB CO.</small></a>
         <p>Independent web design &amp; development · West Chester, PA</p>
         <div><span>© 2026 WiT Web Co.</span><a href="#top">Back to top ↑</a></div>
       </footer>
-    </main>
+    </>
   );
 }
