@@ -7,7 +7,7 @@ media services.
 ## What's included
 
 - Responsive landing page and mobile navigation
-- Four externally hosted, interactive concept website demos
+- Three Cloudflare-hosted concept demos and one independent sports publication
 - Work, services, founder, process, privacy, and contact sections
 - Skip navigation, keyboard-contained mobile menu, visible focus states, and reduced-motion support
 - Canonical, social preview, sitemap, robots, structured data, and branded icon metadata

@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { conceptProjects } from "../data/projects";
+import { showcaseProjects } from "../data/projects";
 
 export function ProjectGrid({ compact = false }: { compact?: boolean }) {
   return (
     <div className={compact ? "demo-grid demo-grid-compact" : "demo-grid"}>
-      {conceptProjects.map((project, index) => (
+      {showcaseProjects.map((project, index) => (
         <article className="demo-card" key={project.name}>
           <a
             className="demo-image"
@@ -12,7 +12,7 @@ export function ProjectGrid({ compact = false }: { compact?: boolean }) {
             target="_blank"
             rel="noreferrer"
             data-track="open_demo"
-            aria-label={`Open the ${project.name} live concept demo in a new tab`}
+            aria-label={`Open ${project.name} in a new tab`}
           >
             <Image
               src={project.image}
@@ -21,10 +21,10 @@ export function ProjectGrid({ compact = false }: { compact?: boolean }) {
               height={1024}
               sizes={compact ? "(max-width: 700px) 100vw, 50vw" : "(max-width: 900px) 100vw, 50vw"}
             />
-            <span className="demo-launch">Live demo ↗</span>
+            <span className="demo-launch">{project.linkLabel} ↗</span>
           </a>
           <div className="demo-copy">
-            <div className="demo-meta"><span>0{index + 1}</span><small>Concept demo · Not client work</small></div>
+            <div className="demo-meta"><span>0{index + 1}</span><small>{project.label}</small></div>
             <p>{project.category}</p>
             <h3>{project.name}</h3>
             <p className="demo-description">{project.description}</p>

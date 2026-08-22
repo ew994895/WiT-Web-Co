@@ -5,12 +5,12 @@ import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 
 export const metadata: Metadata = {
-  title: "Live Website Demos — WiT Web Co.",
-  description: "Explore four live concept websites designed and built by WiT Web Co. for hospitality, media, electrical, and HVAC brands.",
+  title: "Live Web Showcase — WiT Web Co.",
+  description: "Explore three live concept websites and the independent Him & Ham Sports Talk publication, all designed and built by WiT Web Co.",
   alternates: { canonical: "/work" },
   openGraph: {
-    title: "Live Website Demos — WiT Web Co.",
-    description: "Explore four complete concept websites designed and built by WiT Web Co.",
+    title: "Live Web Showcase — WiT Web Co.",
+    description: "Explore three live concept websites and an independent sports publication designed and built by WiT Web Co.",
     type: "website",
     siteName: "WiT Web Co.",
     url: "/work",
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Live Website Demos — WiT Web Co.",
-    description: "Explore four complete concept websites designed and built by WiT Web Co.",
+    title: "Live Web Showcase — WiT Web Co.",
+    description: "Explore three live concept websites and an independent sports publication designed and built by WiT Web Co.",
     images: [],
   },
 };
@@ -31,12 +31,12 @@ export default function WorkPage() {
       <SiteHeader />
       <main id="main-content">
         <section className="inner-hero section-shell">
-          <p className="eyebrow"><span /> Live concept showcase</p>
+          <p className="eyebrow"><span /> Live web showcase</p>
           <div className="inner-hero-grid">
             <h1>Don&apos;t take our<br /><em>word for it.</em></h1>
             <div>
-              <p>Open each complete demo, click around, and picture what the same level of strategy, personality, and polish could do for your business.</p>
-              <a className="text-link" href="#concept-demos">Explore every demo <span aria-hidden="true">↓</span></a>
+              <p>Open each complete site, click around, and picture what the same level of strategy, personality, and polish could do for your business.</p>
+              <a className="text-link" href="#concept-demos">Explore every site <span aria-hidden="true">↓</span></a>
             </div>
           </div>
         </section>
@@ -45,7 +45,7 @@ export default function WorkPage() {
           <div className="showcase-intro section-shell">
             <p className="section-kicker light">Designed and built by WiT Web Co.</p>
             <h2 id="concept-title">Four industries.<br /><em>Four distinct systems.</em></h2>
-            <p>These are self-initiated concept projects—not paid client claims. They exist to show the kind of complete, responsive digital work WiT Web Co. can create.</p>
+            <p>The local-business sites are self-initiated concepts, not paid client claims. Him &amp; Ham is an independently operated publication. Together they show the kind of complete, responsive digital work WiT Web Co. can create.</p>
           </div>
           <div className="section-shell"><ProjectGrid /></div>
         </section>

@@ -12,8 +12,20 @@ const { d1, r2 } = hostingConfig;
 const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === "seatbelt";
 
 const localBindingConfig = {
+  name: "wit-web-co",
   main: "./worker/index.ts",
+  compatibility_date: "2026-08-22",
   compatibility_flags: ["nodejs_compat"],
+  preview_urls: true,
+  assets: {
+    binding: "ASSETS",
+    not_found_handling: "none" as const,
+  },
+  images: { binding: "IMAGES" },
+  observability: {
+    enabled: true,
+    logs: { head_sampling_rate: 1 },
+  },
   d1_databases: d1
     ? [
         {

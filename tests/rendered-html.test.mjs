@@ -35,7 +35,7 @@ test("server-renders the WiT Web Co homepage", async () => {
   assert.match(html, /iOS &amp; Android Apps/i);
   assert.match(html, /Social Media Marketing/i);
   assert.match(html, /Everything your/i);
-  assert.match(html, /Live concept demos/i);
+  assert.match(html, /Live work/i);
   assert.match(html, /Earl-Bowl Lanes/i);
   assert.match(html, /Him &amp; Ham Sports Talk/i);
   assert.match(html, /KC Electric/i);
@@ -81,13 +81,15 @@ test("serves dedicated services and work pages", async () => {
 
   assert.equal(workResponse.status, 200);
   const workHtml = await workResponse.text();
-  assert.match(workHtml, /<title>Live Website Demos — WiT Web Co\.<\/title>/i);
+  assert.match(workHtml, /<title>Live Web Showcase — WiT Web Co\.<\/title>/i);
   assert.match(workHtml, /Earl-Bowl Lanes/);
   assert.match(workHtml, /Him &amp; Ham Sports Talk/);
   assert.match(workHtml, /KC Electric/);
   assert.match(workHtml, /Noah Heating &amp; Air/);
   assert.match(workHtml, /Not client work/i);
-  assert.match(workHtml, /https:\/\/earl-bowl-concept-demo\.ejwit\.chatgpt\.site/i);
+  assert.match(workHtml, /Independent publication/i);
+  assert.match(workHtml, /https:\/\/wit-demo-earl-bowl\.ejwit004\.workers\.dev/i);
+  assert.match(workHtml, /https:\/\/him-and-ham-sports-talk\.ejwit004\.workers\.dev/i);
   assert.match(workHtml, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="http:\/\/localhost(?::3000)?\/work")[^>]*>/i);
 });
 

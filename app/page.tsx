@@ -120,10 +120,10 @@ export default function Home() {
       <section className="demo-section" aria-labelledby="demo-title">
         <div className="section-heading section-shell">
           <div>
-            <p className="section-kicker">Live concept demos</p>
+            <p className="section-kicker">Live work</p>
             <h2 id="demo-title">See what we can<br /><em>actually build.</em></h2>
           </div>
-          <p>Four complete, interactive concept websites across local service, hospitality, and media brands. Open every demo and explore the work yourself.</p>
+          <p>Three complete concept demos plus an independent sports publication. Every site is live on Cloudflare and ready to explore.</p>
         </div>
         <div className="section-shell">
           <ProjectGrid compact />
