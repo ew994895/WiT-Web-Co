@@ -15,7 +15,7 @@ export const conceptProjects = [
     services: ["Product design", "Editorial system", "Interactions"],
     image: "/projects/hank-on-the-record.png",
     imageAlt: "Hank on the Record concept logo and football play artwork",
-    demoUrl: "https://hank-on-the-record-demo.ejwit.chatgpt.site",
+    demoUrl: "https://hank-on-the-record.ejwit004.workers.dev/",
   },
   {
     name: "KC Electric",
