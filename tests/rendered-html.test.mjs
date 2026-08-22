@@ -37,7 +37,7 @@ test("server-renders the WiT Web Co homepage", async () => {
   assert.match(html, /Everything your/i);
   assert.match(html, /Live concept demos/i);
   assert.match(html, /Earl-Bowl Lanes/i);
-  assert.match(html, /Hank on the Record/i);
+  assert.match(html, /Him &amp; Ham Sports Talk/i);
   assert.match(html, /KC Electric/i);
   assert.match(html, /Noah Heating &amp; Air/i);
   assert.match(html, /Led by Ethan Witkowski/i);
@@ -83,7 +83,7 @@ test("serves dedicated services and work pages", async () => {
   const workHtml = await workResponse.text();
   assert.match(workHtml, /<title>Live Website Demos — WiT Web Co\.<\/title>/i);
   assert.match(workHtml, /Earl-Bowl Lanes/);
-  assert.match(workHtml, /Hank on the Record/);
+  assert.match(workHtml, /Him &amp; Ham Sports Talk/);
   assert.match(workHtml, /KC Electric/);
   assert.match(workHtml, /Noah Heating &amp; Air/);
   assert.match(workHtml, /Not client work/i);

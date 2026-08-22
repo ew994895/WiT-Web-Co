@@ -9,12 +9,12 @@ export const conceptProjects = [
     demoUrl: "https://earl-bowl-concept-demo.ejwit.chatgpt.site",
   },
   {
-    name: "Hank on the Record",
+    name: "Him & Ham Sports Talk",
     category: "Editorial · Sports media",
     description: "An opinion-led sports publication with article pages, reader voting, bookmarking, and community discussion.",
     services: ["Product design", "Editorial system", "Interactions"],
     image: "/projects/hank-on-the-record.png",
-    imageAlt: "Hank on the Record concept logo and football play artwork",
+    imageAlt: "Him and Ham Sports Talk logo with football and basketball play artwork",
     demoUrl: "https://hank-on-the-record.ejwit004.workers.dev/",
   },
   {
