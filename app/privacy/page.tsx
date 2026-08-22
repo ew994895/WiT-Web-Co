@@ -24,7 +24,7 @@ export default function PrivacyPage() {
           <section>
             <h2>Project inquiries</h2>
             <p>When you send an inquiry, WiT Web Co. receives the name, email address, project selections, and message you provide. We use that information only to review your request, respond, and maintain a record of the conversation.</p>
-            <p>Inquiry email delivery is processed through <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noreferrer">FormSubmit</a>, which may retain submission data for up to 30 days. Inquiry records are also stored securely with the website so a delivery problem does not cause a lead to disappear.</p>
+            <p>Inquiry records are stored securely with the website so a delivery problem does not cause a lead to disappear. If you use the direct email link, your message is handled by your email provider and ours.</p>
           </section>
           <section>
             <h2>Site measurement</h2>

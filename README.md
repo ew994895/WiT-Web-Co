@@ -11,7 +11,7 @@ media services.
 - Work, services, founder, process, privacy, and contact sections
 - Skip navigation, keyboard-contained mobile menu, visible focus states, and reduced-motion support
 - Canonical, social preview, sitemap, robots, structured data, and branded icon metadata
-- Direct inquiry delivery with durable backup, privacy-friendly event measurement, and spam safeguards
+- Durable inquiry storage, a direct email fallback, privacy-friendly event measurement, and spam safeguards
 - Response security headers, a custom not-found experience, and automated production smoke tests
 - Cloudflare-compatible production build powered by vinext
 
@@ -39,6 +39,7 @@ inbox that receives inquiries:
 CONTACT_EMAIL=ejwit007@outlook.com
 ```
 
-The production form stores each inquiry in the site's database and forwards it
-to the configured inbox. Anonymous conversion events are stored without names,
-email addresses, messages, advertising cookies, or cross-site profiles.
+The production form stores each inquiry in the site's database and keeps the
+configured inbox visible as a direct email fallback. Anonymous conversion events
+are stored without names, email addresses, messages, advertising cookies, or
+cross-site profiles.

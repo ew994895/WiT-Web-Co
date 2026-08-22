@@ -1,5 +1,4 @@
 import { getDatabase } from "../../../db";
-import { getContactEmail } from "../../lib/site";
 
 type InquiryPayload = {
   name?: unknown;
@@ -64,32 +63,6 @@ export async function POST(request: Request) {
       "stored",
       Math.floor(Date.now() / 1000),
     ).run();
-
-    let deliveryStatus = "stored";
-    try {
-      const emailResponse = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(getContactEmail())}`, {
-        method: "POST",
-        headers: { "content-type": "application/json", accept: "application/json" },
-        body: JSON.stringify({
-          _subject: `New WiT Web Co. inquiry from ${inquiry.name}`,
-          _template: "table",
-          name: inquiry.name,
-          email: inquiry.email,
-          project: inquiry.project,
-          budget: inquiry.budget || "Not specified",
-          timeline: inquiry.timeline || "Not specified",
-          message: inquiry.message,
-          source: inquiry.sourcePath,
-        }),
-      });
-      if (emailResponse.ok) deliveryStatus = "forwarded";
-    } catch {
-      deliveryStatus = "stored";
-    }
-
-    await database.prepare("UPDATE inquiries SET delivery_status = ? WHERE id = ?")
-      .bind(deliveryStatus, inquiry.id)
-      .run();
 
     return Response.json({ ok: true });
   } catch {
