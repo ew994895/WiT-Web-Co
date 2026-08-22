@@ -1,37 +1,59 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 
-export function ContactForm({ contactEmail }: { contactEmail?: string }) {
+type FormStatus = "idle" | "sending" | "success" | "error";
+
+export function ContactForm({ contactEmail }: { contactEmail: string }) {
+  const [status, setStatus] = useState<FormStatus>("idle");
   const [formNotice, setFormNotice] = useState("");
+  const startedAt = useRef(0);
 
-  function submitInquiry(event: FormEvent<HTMLFormElement>) {
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
+
+  async function submitInquiry(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setStatus("sending");
+    setFormNotice("Sending your inquiry…");
 
-    if (!contactEmail) {
-      setFormNotice("No information was sent. Add a public contact email to activate this form.");
-      return;
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const payload = Object.fromEntries(data.entries());
+
+    try {
+      const response = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ ...payload, startedAt: startedAt.current, sourcePath: window.location.pathname }),
+      });
+      const result = await response.json() as { ok?: boolean; message?: string };
+      if (!response.ok || !result.ok) throw new Error(result.message || "Unable to send your inquiry.");
+
+      form.reset();
+      startedAt.current = Date.now();
+      setStatus("success");
+      setFormNotice("Thanks—your inquiry is in. Expect a reply within two business days.");
+      window.dispatchEvent(new CustomEvent("wit:track", { detail: { event: "inquiry_submitted" } }));
+    } catch (error) {
+      setStatus("error");
+      setFormNotice(error instanceof Error ? error.message : "We could not send that just yet. Please email us directly.");
     }
-
-    const data = new FormData(event.currentTarget);
-    const subject = encodeURIComponent(`New WiT Web Co inquiry from ${data.get("name")}`);
-    const body = encodeURIComponent(
-      `Name: ${data.get("name")}\nEmail: ${data.get("email")}\nProject: ${data.get("project")}\n\n${data.get("message")}`,
-    );
-    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
-    setFormNotice("Your email app should open with the inquiry ready to send.");
   }
 
   return (
     <form className="contact-form" onSubmit={submitInquiry}>
-      <label>
-        <span>Your name</span>
-        <input type="text" name="name" autoComplete="name" placeholder="How should we address you?" required />
-      </label>
-      <label>
-        <span>Email</span>
-        <input type="email" name="email" autoComplete="email" inputMode="email" placeholder="you@company.com" required />
-      </label>
+      <div className="form-row">
+        <label>
+          <span>Your name</span>
+          <input type="text" name="name" autoComplete="name" placeholder="How should we address you?" maxLength={100} required />
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" autoComplete="email" inputMode="email" placeholder="you@company.com" maxLength={200} required />
+        </label>
+      </div>
       <label>
         <span>What do you need?</span>
         <select name="project" autoComplete="off" defaultValue="" required>
@@ -47,19 +69,43 @@ export function ContactForm({ contactEmail }: { contactEmail?: string }) {
           <option>Something else</option>
         </select>
       </label>
+      <div className="form-row">
+        <label>
+          <span>Approximate budget</span>
+          <select name="budget" autoComplete="off" defaultValue="">
+            <option value="">Not sure yet</option>
+            <option>$1,500–$3,000</option>
+            <option>$3,500–$7,500</option>
+            <option>$7,500–$15,000</option>
+            <option>$15,000+</option>
+          </select>
+        </label>
+        <label>
+          <span>Ideal timing</span>
+          <select name="timeline" autoComplete="off" defaultValue="">
+            <option value="">Flexible</option>
+            <option>Within 1 month</option>
+            <option>1–3 months</option>
+            <option>3–6 months</option>
+            <option>Exploring for later</option>
+          </select>
+        </label>
+      </div>
       <label>
         <span>Tell us a little more</span>
-        <textarea name="message" autoComplete="off" rows={4} placeholder="What are you building, and why now?" required />
+        <textarea name="message" autoComplete="off" rows={5} placeholder="What are you building, and why now?" maxLength={4000} required />
       </label>
-      <button className="button button-lime" type="submit">
-        {contactEmail ? "Create email" : "Preview inquiry"} <span aria-hidden="true">↗</span>
+      <label className="honeypot" aria-hidden="true">
+        <span>Website</span>
+        <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+      </label>
+      <button className="button button-lime" type="submit" disabled={status === "sending"}>
+        {status === "sending" ? "Sending…" : status === "success" ? "Inquiry sent" : "Send inquiry"} <span aria-hidden="true">↗</span>
       </button>
       <p className="form-helper">
-        {contactEmail
-          ? "Your inquiry opens in your email app so you stay in control."
-          : "Preview form — no information is transmitted yet."}
+        By sending, you agree to our <a href="/privacy">privacy notice</a>. Prefer email? <a href={`mailto:${contactEmail}`} data-track="email_click">{contactEmail}</a>
       </p>
-      <p className="form-notice" role="status" aria-live="polite">{formNotice}</p>
+      <p className={status === "error" ? "form-notice form-notice-error" : "form-notice"} role="status" aria-live="polite">{formNotice}</p>
     </form>
   );
 }

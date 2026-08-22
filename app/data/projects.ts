@@ -1,0 +1,38 @@
+export const conceptProjects = [
+  {
+    name: "Earl-Bowl Lanes",
+    category: "Hospitality · Local business",
+    description: "A bright, energetic redesign with visit planning, locations, specials, and event-focused calls to action.",
+    services: ["Web strategy", "Visual design", "Interactive planning"],
+    image: "/projects/earl-bowl.png",
+    imageAlt: "Earl-Bowl Lanes concept logo and bowling artwork",
+    demoUrl: "https://earl-bowl-concept-demo.ejwit.chatgpt.site",
+  },
+  {
+    name: "Hank on the Record",
+    category: "Editorial · Sports media",
+    description: "An opinion-led sports publication with article pages, reader voting, bookmarking, and community discussion.",
+    services: ["Product design", "Editorial system", "Interactions"],
+    image: "/projects/hank-on-the-record.png",
+    imageAlt: "Hank on the Record concept logo and football play artwork",
+    demoUrl: "https://hank-on-the-record-demo.ejwit.chatgpt.site",
+  },
+  {
+    name: "KC Electric",
+    category: "Home services · Lead generation",
+    description: "A confident service-business website built around trust, clear capabilities, and a focused estimate request flow.",
+    services: ["Brand direction", "Web design", "Conversion flow"],
+    image: "/projects/kc-electric.png",
+    imageAlt: "KC Electric concept logo and electrical panel artwork",
+    demoUrl: "https://kc-electric-concept-demo.ejwit.chatgpt.site",
+  },
+  {
+    name: "Noah Heating & Air",
+    category: "HVAC · Service business",
+    description: "A calm, practical HVAC experience that helps homeowners understand services and request the right next step.",
+    services: ["Messaging", "Responsive design", "Service request UX"],
+    image: "/projects/noah-heating-air.png",
+    imageAlt: "Noah Heating and Air concept logo and thermostat artwork",
+    demoUrl: "https://noah-heating-air-demo.ejwit.chatgpt.site",
+  },
+] as const;

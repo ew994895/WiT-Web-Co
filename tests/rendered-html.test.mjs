@@ -34,8 +34,17 @@ test("server-renders the WiT Web Co homepage", async () => {
   assert.match(html, /Full-service digital studio/i);
   assert.match(html, /iOS &amp; Android Apps/i);
   assert.match(html, /Social Media Marketing/i);
-  assert.match(html, /Selected work/i);
-  assert.match(html, /OrthoForge/i);
+  assert.match(html, /Everything your/i);
+  assert.match(html, /Live concept demos/i);
+  assert.match(html, /Earl-Bowl Lanes/i);
+  assert.match(html, /Hank on the Record/i);
+  assert.match(html, /KC Electric/i);
+  assert.match(html, /Noah Heating &amp; Air/i);
+  assert.match(html, /Led by Ethan Witkowski/i);
+  assert.match(html, /Simple process/i);
+  assert.match(html, /Send inquiry/i);
+  assert.match(html, /ejwit007@outlook\.com/i);
+  assert.match(html, /Have a project in mind/i);
   assert.doesNotMatch(html, /Built with purpose/);
   assert.match(html, /Have a project in mind/);
   assert.match(html, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="http:\/\/localhost(?::3000)?\/?")[^>]*>/i);
@@ -72,10 +81,13 @@ test("serves dedicated services and work pages", async () => {
 
   assert.equal(workResponse.status, 200);
   const workHtml = await workResponse.text();
-  assert.match(workHtml, /<title>Selected Work — WiT Web Co\.<\/title>/i);
-  assert.match(workHtml, /RankIt/);
-  assert.match(workHtml, /OrthoForge/);
-  assert.match(workHtml, /INDEPENDENT PORTFOLIO/);
+  assert.match(workHtml, /<title>Live Website Demos — WiT Web Co\.<\/title>/i);
+  assert.match(workHtml, /Earl-Bowl Lanes/);
+  assert.match(workHtml, /Hank on the Record/);
+  assert.match(workHtml, /KC Electric/);
+  assert.match(workHtml, /Noah Heating &amp; Air/);
+  assert.match(workHtml, /Not client work/i);
+  assert.match(workHtml, /https:\/\/earl-bowl-concept-demo\.ejwit\.chatgpt\.site/i);
   assert.match(workHtml, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="http:\/\/localhost(?::3000)?\/work")[^>]*>/i);
 });
 
@@ -95,4 +107,16 @@ test("serves discovery metadata routes", async () => {
   assert.match(sitemap, /<loc>http:\/\/localhost\/<\/loc>/);
   assert.match(sitemap, /<loc>http:\/\/localhost\/services<\/loc>/);
   assert.match(sitemap, /<loc>http:\/\/localhost\/work<\/loc>/);
+  assert.match(sitemap, /<loc>http:\/\/localhost\/privacy<\/loc>/);
+});
+
+test("serves a clear privacy notice", async () => {
+  const response = await render("/privacy");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /<title>Privacy — WiT Web Co\.<\/title>/i);
+  assert.match(html, /Project inquiries/i);
+  assert.match(html, /Site measurement/i);
+  assert.match(html, /advertising cookies/i);
+  assert.match(html, /ejwit007@outlook\.com/i);
 });

@@ -1,5 +1,7 @@
 import { headers } from "next/headers";
 import type { Metadata } from "next";
+import { Analytics } from "./components/Analytics";
+import { getContactEmail } from "./lib/site";
 import "./globals.css";
 
 const title = "WiT Web Co. — Digital work with wit, built to grow";
@@ -40,7 +42,7 @@ export async function generateMetadata(): Promise<Metadata> {
         url: "/og.png",
         width: 1792,
         height: 935,
-        alt: "WiT Web Co. — Websites with wit. Built to work.",
+        alt: "WiT Web Co. — Digital work with wit. Built to grow.",
       }],
     },
     twitter: {
@@ -58,7 +60,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const baseUrl = await getRequestBaseUrl();
-  const contactEmail = process.env.CONTACT_EMAIL;
+  const contactEmail = getContactEmail();
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
@@ -80,7 +82,7 @@ export default async function RootLayout({
       "Search engine optimization",
       "Social media marketing",
     ],
-    ...(contactEmail ? { email: contactEmail } : {}),
+    email: contactEmail,
   };
 
   return (
@@ -90,6 +92,7 @@ export default async function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
+        <Analytics />
         {children}
       </body>
     </html>
