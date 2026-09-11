@@ -1,5 +1,5 @@
-export const PUBLIC_CONTACT_EMAIL = "ejwit007@outlook.com";
+export const PUBLIC_CONTACT_EMAIL = "ejwit007@gmail.com";
 
 export function getContactEmail() {
-  return process.env.CONTACT_EMAIL ?? PUBLIC_CONTACT_EMAIL;
+  return PUBLIC_CONTACT_EMAIL;
 }

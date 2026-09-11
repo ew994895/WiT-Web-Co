@@ -68,7 +68,7 @@ export default function Home() {
           </p>
           <div className="hero-actions">
             <a className="button button-dark" href="#contact" data-track="cta_start_project">Start a project <span aria-hidden="true">↗</span></a>
-            <a className="text-link" href="/services" data-track="view_services">Explore services &amp; pricing <span aria-hidden="true">↗</span></a>
+            <a className="text-link" href="/services" data-track="view_services">Explore services <span aria-hidden="true">↗</span></a>
           </div>
         </div>
 
@@ -103,7 +103,7 @@ export default function Home() {
           </div>
           <div className="home-services-intro">
             <p>Choose one focused service or bring them together into one clear, connected project.</p>
-            <a className="text-link text-link-light" href="/services">Details &amp; pricing <span aria-hidden="true">↗</span></a>
+            <a className="text-link text-link-light" href="/services">Explore the services <span aria-hidden="true">↗</span></a>
           </div>
         </div>
         <div className="home-service-grid section-shell">

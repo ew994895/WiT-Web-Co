@@ -1,4 +1,7 @@
 import { getDatabase } from "../../../db";
+import { env } from "cloudflare:workers";
+import { sendInquiryEmail } from "../../lib/inquiry-email";
+import { PUBLIC_CONTACT_EMAIL } from "../../lib/site";
 
 type InquiryPayload = {
   name?: unknown;
@@ -44,7 +47,7 @@ export async function POST(request: Request) {
       sourcePath: clean(payload.sourcePath, 200) || "/",
     };
 
-    if (!inquiry.name || !inquiry.email.includes("@") || !inquiry.project || !inquiry.message) {
+    if (!inquiry.name || !/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(inquiry.email) || !inquiry.project || !inquiry.message) {
       return Response.json({ ok: false, message: "Please complete the required fields." }, { status: 400 });
     }
 
@@ -63,6 +66,28 @@ export async function POST(request: Request) {
       "stored",
       Math.floor(Date.now() / 1000),
     ).run();
+
+    const notified = await sendInquiryEmail(inquiry, {
+      apiKey: typeof env.RESEND_API_KEY === "string" ? env.RESEND_API_KEY : "",
+      from: typeof env.INQUIRY_FROM_EMAIL === "string" ? env.INQUIRY_FROM_EMAIL : "",
+      to: PUBLIC_CONTACT_EMAIL,
+    });
+
+    // Storage already succeeded. Do not report an accepted email as a failed
+    // submission just because updating its bookkeeping status fails.
+    try {
+      await database.prepare("UPDATE inquiries SET delivery_status = ? WHERE id = ?")
+        .bind(notified ? "email_accepted" : "notification_failed", inquiry.id).run();
+    } catch {
+      console.error("Inquiry notification status update failed.");
+    }
+
+    if (!notified) {
+      return Response.json({
+        ok: false,
+        message: `Your inquiry was saved, but we could not send the email notification. Please email ${PUBLIC_CONTACT_EMAIL} directly so we can respond.`,
+      }, { status: 503 });
+    }
 
     return Response.json({ ok: true });
   } catch {

@@ -19,12 +19,12 @@ export default function PrivacyPage() {
       <main id="main-content" className="legal-page section-shell">
         <p className="eyebrow"><span /> Privacy</p>
         <h1>Clear, simple,<br /><em>respectful.</em></h1>
-        <p className="legal-updated">Last updated August 21, 2026</p>
+        <p className="legal-updated">Last updated September 11, 2026</p>
         <div className="legal-content">
           <section>
             <h2>Project inquiries</h2>
             <p>When you send an inquiry, WiT Web Co. receives the name, email address, project selections, and message you provide. We use that information only to review your request, respond, and maintain a record of the conversation.</p>
-            <p>Inquiry records are stored securely with the website so a delivery problem does not cause a lead to disappear. If you use the direct email link, your message is handled by your email provider and ours.</p>
+            <p>Inquiry records are stored with the website. When email notifications are enabled, your inquiry details are also sent through Resend to our Gmail inbox so we can respond. If you use the direct email link, your message is handled by your email provider and ours.</p>
           </section>
           <section>
             <h2>Site measurement</h2>

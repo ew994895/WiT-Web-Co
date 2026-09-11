@@ -69,28 +69,16 @@ export function ContactForm({ contactEmail }: { contactEmail: string }) {
           <option>Something else</option>
         </select>
       </label>
-      <div className="form-row">
-        <label>
-          <span>Approximate budget</span>
-          <select name="budget" autoComplete="off" defaultValue="">
-            <option value="">Not sure yet</option>
-            <option>$1,500–$3,000</option>
-            <option>$3,500–$7,500</option>
-            <option>$7,500–$15,000</option>
-            <option>$15,000+</option>
-          </select>
-        </label>
-        <label>
-          <span>Ideal timing</span>
-          <select name="timeline" autoComplete="off" defaultValue="">
-            <option value="">Flexible</option>
-            <option>Within 1 month</option>
-            <option>1–3 months</option>
-            <option>3–6 months</option>
-            <option>Exploring for later</option>
-          </select>
-        </label>
-      </div>
+      <label>
+        <span>Ideal timing</span>
+        <select name="timeline" autoComplete="off" defaultValue="">
+          <option value="">Flexible</option>
+          <option>Within 1 month</option>
+          <option>1–3 months</option>
+          <option>3–6 months</option>
+          <option>Exploring for later</option>
+        </select>
+      </label>
       <label>
         <span>Tell us a little more</span>
         <textarea name="message" autoComplete="off" rows={5} placeholder="What are you building, and why now?" maxLength={4000} required />

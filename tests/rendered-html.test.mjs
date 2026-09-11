@@ -43,7 +43,7 @@ test("server-renders the WiT Web Co homepage", async () => {
   assert.match(html, /Led by Ethan Witkowski/i);
   assert.match(html, /Simple process/i);
   assert.match(html, /Send inquiry/i);
-  assert.match(html, /ejwit007@outlook\.com/i);
+  assert.match(html, /ejwit007@gmail\.com/i);
   assert.match(html, /Have a project in mind/i);
   assert.doesNotMatch(html, /Built with purpose/);
   assert.match(html, /Have a project in mind/);
@@ -68,15 +68,14 @@ test("serves dedicated services and work pages", async () => {
 
   assert.equal(servicesResponse.status, 200);
   const servicesHtml = await servicesResponse.text();
-  assert.match(servicesHtml, /<title>Digital Services &amp; Pricing — WiT Web Co\.<\/title>/i);
-  assert.match(servicesHtml, /Suggested investment/i);
+  assert.match(servicesHtml, /<title>Digital Services — WiT Web Co\.<\/title>/i);
+  assert.match(servicesHtml, /scope, timing, and quote/i);
   assert.match(servicesHtml, /Graphic Design/i);
   assert.match(servicesHtml, /Photography/i);
   assert.match(servicesHtml, /iOS &amp; Android Apps/i);
   assert.match(servicesHtml, /Social Media Marketing/i);
-  assert.match(servicesHtml, /\$1,500/);
-  assert.match(servicesHtml, /\$3,500/);
-  assert.match(servicesHtml, /\$7,500/);
+  assert.doesNotMatch(servicesHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ""), /\$[0-9]|Suggested investment|Most popular|Usually [0-9]/i);
+  assert.doesNotMatch((await (await render()).text()).replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ""), /\$[0-9]|pricing|outlook\.com/i);
   assert.match(servicesHtml, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="http:\/\/localhost(?::3000)?\/services")[^>]*>/i);
 
   assert.equal(workResponse.status, 200);
@@ -120,5 +119,5 @@ test("serves a clear privacy notice", async () => {
   assert.match(html, /Project inquiries/i);
   assert.match(html, /Site measurement/i);
   assert.match(html, /advertising cookies/i);
-  assert.match(html, /ejwit007@outlook\.com/i);
+  assert.match(html, /ejwit007@gmail\.com/i);
 });
