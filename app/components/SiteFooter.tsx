@@ -7,7 +7,7 @@ export function SiteFooter() {
       <a className="wordmark footer-mark" href="/" aria-label="WiT Web Co home">
         <span>WiT</span><small>WEB CO.</small>
       </a>
-      <p>Websites, apps, creative &amp; digital growth · West Chester, PA</p>
+      <p>Websites, custom tools &amp; AI integrations · West Chester, PA</p>
       <div className="footer-links">
         <span>© 2026 WiT Web Co.</span>
         <a href={`mailto:${PUBLIC_CONTACT_EMAIL}`} data-track="email_click">Email</a>

@@ -1,5 +1,7 @@
-export function GET(request: Request) {
-  const origin = new URL(request.url).origin;
+import { SITE_URL } from "../lib/site";
+
+export function GET() {
+  const origin = SITE_URL;
   const body = [
     "User-agent: *",
     "Allow: /",

@@ -5,22 +5,20 @@ import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 
 export const metadata: Metadata = {
-  title: "Live Web Showcase — WiT Web Co.",
-  description: "Explore three live concept websites and the independent Him & Ham Sports Talk publication, all designed and built by WiT Web Co.",
+  title: "Selected Projects — WiT Web Co.",
+  description: "Explore Witty Games, Roster IQ, and Witty’s Website: independent projects by Ethan Witkowski.",
   alternates: { canonical: "/work" },
   openGraph: {
-    title: "Live Web Showcase — WiT Web Co.",
-    description: "Explore three live concept websites and an independent sports publication designed and built by WiT Web Co.",
+    title: "Selected Projects — WiT Web Co.",
+    description: "Witty Games, Roster IQ, and a personal portfolio by Ethan Witkowski.",
     type: "website",
     siteName: "WiT Web Co.",
     url: "/work",
-    images: [],
   },
   twitter: {
-    card: "summary",
-    title: "Live Web Showcase — WiT Web Co.",
-    description: "Explore three live concept websites and an independent sports publication designed and built by WiT Web Co.",
-    images: [],
+    card: "summary_large_image",
+    title: "Selected Projects — WiT Web Co.",
+    description: "Witty Games, Roster IQ, and a personal portfolio by Ethan Witkowski.",
   },
 };
 
@@ -31,28 +29,28 @@ export default function WorkPage() {
       <SiteHeader />
       <main id="main-content">
         <section className="inner-hero section-shell">
-          <p className="eyebrow"><span /> Live web showcase</p>
+          <p className="eyebrow"><span /> Independent projects</p>
           <div className="inner-hero-grid">
-            <h1>Don&apos;t take our<br /><em>word for it.</em></h1>
+            <h1>Ideas made<br /><em>into real things.</em></h1>
             <div>
-              <p>Open each complete site, click around, and picture what the same level of strategy, personality, and polish could do for your business.</p>
-              <a className="text-link" href="#concept-demos">Explore every site <span aria-hidden="true">↓</span></a>
+              <p>Explore the games, tools, and personal work I’m building. Each project offers a different look at how I turn an idea into a usable experience.</p>
+              <a className="text-link" href="#selected-projects">Explore every site <span aria-hidden="true">↓</span></a>
             </div>
           </div>
         </section>
 
-        <section className="work-showcase" id="concept-demos" aria-labelledby="concept-title">
+        <section className="work-showcase" id="selected-projects" aria-labelledby="projects-title">
           <div className="showcase-intro section-shell">
-            <p className="section-kicker light">Designed and built by WiT Web Co.</p>
-            <h2 id="concept-title">Four industries.<br /><em>Four distinct systems.</em></h2>
-            <p>The local-business sites are self-initiated concepts, not paid client claims. Him &amp; Ham is an independently operated publication. Together they show the kind of complete, responsive digital work WiT Web Co. can create.</p>
+            <p className="section-kicker light">Built by Ethan Witkowski</p>
+            <h2 id="projects-title">Three projects.<br /><em>A personal point of view.</em></h2>
+            <p>These are my own products and portfolio, not client commissions. They show my approach to playful interactions, information design, and building for the web. The projects continue to evolve.</p>
           </div>
           <div className="section-shell"><ProjectGrid /></div>
         </section>
 
         <section className="page-cta section-shell">
           <p className="section-kicker">Your business deserves its own direction</p>
-          <h2>Inspired by a demo?<br /><em>Let&apos;s make yours.</em></h2>
+          <h2>Have an idea of your own?<br /><em>Let&apos;s make yours.</em></h2>
           <a className="button button-dark" href="/#contact" data-track="cta_start_project">Start a conversation <span aria-hidden="true">↗</span></a>
         </section>
       </main>

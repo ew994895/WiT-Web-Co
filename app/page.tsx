@@ -1,4 +1,5 @@
-import { ContactForm } from "./components/ContactForm";
+import { ContactCard } from "./components/ContactCard";
+import { services } from "./data/services";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import { ProjectGrid } from "./components/ProjectGrid";
@@ -11,43 +12,6 @@ const steps = [
   ["04", "Launch", "We test the details, connect measurement, and make sure you are ready to run."],
 ];
 
-const services = [
-  {
-    number: "01",
-    name: "Web Design",
-    description: "Distinctive, accessible interfaces that make your brand clear and the next step obvious.",
-  },
-  {
-    number: "02",
-    name: "Web Development",
-    description: "Fast websites and progressive web apps built on clean, maintainable foundations.",
-  },
-  {
-    number: "03",
-    name: "iOS & Android Apps",
-    description: "Useful mobile products taken from strategy and interface design through release.",
-  },
-  {
-    number: "04",
-    name: "Graphic Design",
-    description: "Memorable brand, campaign, digital, and print graphics with a consistent point of view.",
-  },
-  {
-    number: "05",
-    name: "Photography",
-    description: "Purposeful brand, product, and team imagery for websites, social content, and print.",
-  },
-  {
-    number: "06",
-    name: "SEO",
-    description: "Technical and on-page foundations that help the right people discover your business.",
-  },
-  {
-    number: "07",
-    name: "Social Media Marketing",
-    description: "Focused strategy and creative that build a recognizable presence across social channels.",
-  },
-];
 
 export default function Home() {
   const contactEmail = getContactEmail();
@@ -63,8 +27,8 @@ export default function Home() {
           <p className="eyebrow"><span /> Independent digital studio · West Chester, PA</p>
           <h1>Digital work with <em>wit.</em><br />Built to grow.</h1>
           <p className="hero-intro">
-            Websites, iOS and Android apps, brand design, content, and marketing
-            for growing businesses ready to look sharp and move with purpose.
+            Websites and practical digital tools for small businesses.
+            Help customers find you, understand what you do, and take the next step.
           </p>
           <div className="hero-actions">
             <a className="button button-dark" href="#contact" data-track="cta_start_project">Start a project <span aria-hidden="true">↗</span></a>
@@ -76,30 +40,30 @@ export default function Home() {
           <div className="orbit orbit-one" />
           <div className="orbit orbit-two" />
           <div className="browser-card">
-            <div className="browser-bar"><i /><i /><i /><span>witweb.co / services</span></div>
+            <div className="browser-bar"><i /><i /><i /><span>WiT Web Co. / services</span></div>
             <div className="browser-body">
               <p>ONE STUDIO · STRATEGY TO LAUNCH</p>
-              <div className="browser-title">Web. Brand.<br /><b>Apps.</b></div>
+              <div className="browser-title">Web. Tools.<br /><b>Ideas.</b></div>
               <div className="browser-grid">
                 <article><span>01</span><strong>Web</strong><small>Sharp + responsive</small></article>
-                <article><span>02</span><strong>Mobile</strong><small>iOS + Android</small></article>
+                <article><span>02</span><strong>Tools</strong><small>Built for your workflow</small></article>
               </div>
             </div>
           </div>
-          <div className="sticker sticker-top">One studio<br /><b>full range</b></div>
+          <div className="sticker sticker-top">Your idea<br /><b>built with care</b></div>
           <div className="sticker sticker-bottom">MAKE<br /><b>IT MEAN</b><br />BUSINESS</div>
         </div>
       </section>
 
       <div className="ticker" aria-hidden="true">
-        <div>WEB DESIGN <span>✦</span> APP DEVELOPMENT <span>✦</span> SEO <span>✦</span> GRAPHIC DESIGN <span>✦</span> PHOTOGRAPHY <span>✦</span> SOCIAL MEDIA <span>✦</span> WEB DESIGN <span>✦</span> APP DEVELOPMENT <span>✦</span> SEO <span>✦</span> GRAPHIC DESIGN <span>✦</span> PHOTOGRAPHY <span>✦</span> SOCIAL MEDIA <span>✦</span></div>
+        <div>WEB DESIGN <span>✦</span> WEB APPS <span>✦</span> SEO <span>✦</span> AI INTEGRATIONS <span>✦</span> AUTOMATION <span>✦</span> WEBSITE CARE <span>✦</span> WEB DESIGN <span>✦</span> WEB APPS <span>✦</span> SEO <span>✦</span> AI INTEGRATIONS <span>✦</span> AUTOMATION <span>✦</span> WEBSITE CARE <span>✦</span></div>
       </div>
 
       <section className="home-services" id="services" aria-labelledby="services-title">
         <div className="home-services-heading section-shell">
           <div>
             <p className="section-kicker light">What we do</p>
-            <h2 id="services-title">Everything your<br /><em>digital presence needs.</em></h2>
+            <h2 id="services-title">A better website.<br /><em>A useful next step.</em></h2>
           </div>
           <div className="home-services-intro">
             <p>Choose one focused service or bring them together into one clear, connected project.</p>
@@ -107,9 +71,9 @@ export default function Home() {
           </div>
         </div>
         <div className="home-service-grid section-shell">
-          {services.map((service) => (
-            <article key={service.number}>
-              <span>{service.number}</span>
+          {services.map((service, index) => (
+            <article key={service.name}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{service.name}</h3>
               <p>{service.description}</p>
             </article>
@@ -120,16 +84,16 @@ export default function Home() {
       <section className="demo-section" aria-labelledby="demo-title">
         <div className="section-heading section-shell">
           <div>
-            <p className="section-kicker">Live work</p>
+            <p className="section-kicker">Selected projects</p>
             <h2 id="demo-title">See what we can<br /><em>actually build.</em></h2>
           </div>
-          <p>Three complete concept demos plus an independent sports publication. Every site is live on Cloudflare and ready to explore.</p>
+          <p>Witty Games, Roster IQ, and my personal portfolio. Independent projects that show how I approach design, development, and useful interactions.</p>
         </div>
         <div className="section-shell">
           <ProjectGrid compact />
         </div>
         <div className="work-action section-shell">
-          <a className="button button-dark" href="/work" data-track="view_work">View the full showcase <span aria-hidden="true">↗</span></a>
+          <a className="button button-dark" href="/work" data-track="view_work">Explore the projects <span aria-hidden="true">↗</span></a>
         </div>
       </section>
 
@@ -174,7 +138,7 @@ export default function Home() {
           </div>
         </div>
 
-        <ContactForm contactEmail={contactEmail} />
+        <ContactCard contactEmail={contactEmail} />
       </section>
       </main>
       <SiteFooter />

@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   title: "Privacy — WiT Web Co.",
   description: "How WiT Web Co. handles website analytics and project inquiry information.",
   alternates: { canonical: "/privacy" },
-  openGraph: { title: "Privacy — WiT Web Co.", description: "How WiT Web Co. handles website analytics and project inquiry information.", images: [] },
-  twitter: { card: "summary", title: "Privacy — WiT Web Co.", description: "How WiT Web Co. handles website analytics and project inquiry information.", images: [] },
+  openGraph: { title: "Privacy — WiT Web Co.", description: "How WiT Web Co. handles website analytics and project inquiry information." },
+  twitter: { card: "summary_large_image", title: "Privacy — WiT Web Co.", description: "How WiT Web Co. handles website analytics and project inquiry information." },
 };
 
 export default function PrivacyPage() {
@@ -19,16 +19,16 @@ export default function PrivacyPage() {
       <main id="main-content" className="legal-page section-shell">
         <p className="eyebrow"><span /> Privacy</p>
         <h1>Clear, simple,<br /><em>respectful.</em></h1>
-        <p className="legal-updated">Last updated September 11, 2026</p>
+        <p className="legal-updated">Last updated October 16, 2026</p>
         <div className="legal-content">
           <section>
             <h2>Project inquiries</h2>
-            <p>When you send an inquiry, WiT Web Co. receives the name, email address, project selections, and message you provide. We use that information only to review your request, respond, and maintain a record of the conversation.</p>
-            <p>Inquiry records are stored with the website. When email notifications are enabled, your inquiry details are also sent through Resend to our Gmail inbox so we can respond. If you use the direct email link, your message is handled by your email provider and ours.</p>
+            <p>When you email WiT Web Co., we receive your email address and the information you choose to share. We use that information only to review your request, respond, and maintain a record of the conversation.</p>
+            <p>Contact currently happens by email, handled by your email provider and our Gmail inbox. The website does not currently accept form submissions. Earlier form inquiries may remain in our website database.</p>
           </section>
           <section>
             <h2>Site measurement</h2>
-            <p>We record a small set of anonymous events such as page views, project-demo openings, and successful form submissions. These events contain the page path and event name—not your name, email address, message, or a cross-site advertising profile.</p>
+            <p>We record a small set of anonymous events such as page views, project openings, and email-link clicks. These events contain the page path, event name, and time—not your name, email address, message, or a cross-site advertising profile.</p>
             <p>This site does not use advertising cookies or sell personal information.</p>
           </section>
           <section>

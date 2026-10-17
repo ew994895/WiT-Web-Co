@@ -1,8 +1,7 @@
 # WiT Web Co.
 
 The official marketing site for WiT Web Co., an independent digital studio in
-West Chester, Pennsylvania offering web, mobile app, creative, SEO, and social
-media services.
+West Chester, Pennsylvania offering websites, custom web apps, AI integrations, and website care.
 
 ## Hosting
 
@@ -22,11 +21,11 @@ after publishing. Deployment preserves dashboard-set variables and secrets.
 ## What's included
 
 - Responsive landing page and mobile navigation
-- Three Cloudflare-hosted concept demos and one independent sports publication
+- Three independent projects: Witty Games, Roster IQ, and Witty’s Website
 - Work, services, founder, process, privacy, and contact sections
 - Skip navigation, keyboard-contained mobile menu, visible focus states, and reduced-motion support
 - Canonical, social preview, sitemap, robots, structured data, and branded icon metadata
-- Durable inquiry storage, a direct email fallback, privacy-friendly event measurement, and spam safeguards
+- Direct email contact and privacy-friendly event measurement; legacy inquiry storage retained with collection disabled
 - Response security headers, a custom not-found experience, and automated production smoke tests
 - Cloudflare-compatible production build powered by vinext
 
@@ -47,8 +46,7 @@ npm run verify
 
 ## Contact inbox
 
-**Current status:** direct email links work, but production form notifications
-are not configured. Formspree was recommended as an alternative that does not
+**Current status:** the public contact section uses email links to `ejwit007@gmail.com`. These open the visitor’s email app; inbox delivery has not been tested in this release. Form collection is disabled (`INQUIRY_FORM_ENABLED = false`) and the endpoint returns an email instruction before accessing the database. Production form notifications are not configured. Formspree was recommended as an alternative that does not
 require the owner to have a custom domain. Switching providers is pending the
 user's verified Formspree endpoint; the implementation below still uses Resend.
 
@@ -70,8 +68,7 @@ To enable delivery:
 4. Confirm receipt in `ejwit007@gmail.com` (including spam), verify every field,
    and check that Reply targets the test submitter.
 
-Until configured, the form preserves inquiries but shows an explicit email
-fallback instead of claiming notification success. Database delivery status is
+Before re-enabling form collection, add server-side abuse protection, a way to review stored leads, and prove inbox delivery with a real test. Restore a form UI only after those checks pass. Database delivery status is
 `email_accepted` when Resend accepts the message, or `notification_failed` when
 it does not. Acceptance is not proof of inbox delivery; check Resend delivery
 logs and the receiving inbox during the live test. Failed notifications are not
@@ -79,3 +76,24 @@ automatically retried, and this project has no owner inbox interface yet.
 
 Automated tests use a mocked email provider; they do not send real messages.
 Anonymous conversion events do not contain inquiry details.
+
+## Launch follow-up
+
+- Confirm the permanent custom domain before changing `SITE_URL` in `app/lib/site.ts`; canonical, structured data, robots, and sitemap share that source.
+- Complete email provider setup and delivery verification before enabling form collection.
+- Review each independent product separately before promoting it as a production service.
+- Keep AI integrations scoped individually; no AI provider is called by this marketing website.
+
+## Verification notes — October 16, 2026
+
+Type checking, linting, the production build, and all nine tests pass. Desktop
+and 390px phone layouts were checked in the browser, including project assets
+and mobile navigation. Cloudflare tooling was updated to resolve a local
+runtime/compatibility-date mismatch. Build output still includes framework
+sourcemap and route-classification warnings.
+
+The full npm audit reports 11 remaining development/build dependency findings
+(7 high, 4 moderate), centered on glob matching through vinext/lint tooling and
+Drizzle Kit's older esbuild toolchain. The production-only audit reports none.
+These are unresolved dependency findings, not a completed security audit; do
+not use forced package downgrades as a substitute for a tested tooling update.

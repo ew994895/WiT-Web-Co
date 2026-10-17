@@ -272,7 +272,7 @@ h1 em { font-family: Georgia, "Times New Roman", serif; font-weight: 400; color:
 .capabilities-section { background: var(--ink); color: var(--cream); padding: 135px 0 145px; }
 .capabilities-heading { display: grid; grid-template-columns: .6fr 1.4fr; gap: 50px; align-items: start; margin-bottom: 75px; }
 .capabilities-heading h2 { margin: 0; }
-.capability-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(255,255,255,.35); border-left: 1px solid rgba(255,255,255,.35); }
+.capability-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid rgba(255,255,255,.35); border-left: 1px solid rgba(255,255,255,.35); }
 .capability-grid article { min-height: 285px; padding: 28px; border-right: 1px solid rgba(255,255,255,.35); border-bottom: 1px solid rgba(255,255,255,.35); display: flex; flex-direction: column; }
 .capability-grid span { font: 750 11px/1 monospace; color: var(--lime); }
 .capability-grid h3 { margin: auto 0 14px; font-size: 36px; line-height: .95; letter-spacing: -.05em; }
@@ -465,4 +465,30 @@ footer a:hover { color: var(--orange-ink); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
+
+/* Project artwork and direct contact share the existing studio palette. */
+.demo-grid > .demo-card:last-child:nth-child(odd) { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; }
+.demo-grid > .demo-card:last-child:nth-child(odd) .demo-image { height: 100%; min-height: 360px; border-bottom: 0; border-right: 2px solid var(--ink); }
+.contact-card { padding: clamp(32px, 5vw, 80px); display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
+.contact-card h3 { font-size: clamp(36px, 4vw, 56px); line-height: 1; letter-spacing: -.05em; margin: 24px 0 0; }
+.contact-card > p:not(.section-kicker) { line-height: 1.6; max-width: 510px; }
+.contact-card .button { margin-top: 18px; }
+.contact-address { margin-top: 22px; font-size: clamp(18px, 2vw, 24px); text-decoration: underline; text-underline-offset: 5px; overflow-wrap: anywhere; }
+.contact-card .contact-helper { font-size: 13px; }
+.contact-helper a { text-decoration: underline; }
+.contact-checklist { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 20px; width: 100%; }
+.contact-checklist h4 { margin: 0; font-size: 17px; }
+.contact-checklist ul { padding-left: 20px; line-height: 1.7; }
+.service-detail { padding-block: 85px; max-width: 900px; }
+.service-detail h2 { font-size: clamp(34px, 4vw, 52px); line-height: 1.05; letter-spacing: -.04em; }
+.service-detail > p:not(.section-kicker) { font-size: 18px; line-height: 1.65; }
+@media (max-width: 900px) {
+  .demo-grid > .demo-card:last-child:nth-child(odd) { display: flex; }
+  .demo-grid > .demo-card:last-child:nth-child(odd) .demo-image { height: auto; min-height: 0; border-right: 0; border-bottom: 2px solid var(--ink); }
+}
+@media (max-width: 540px) {
+  .contact-copy { min-height: auto; }
+  .contact-note { margin-top: 32px; }
+  .contact-card { padding: 50px 26px; }
 }

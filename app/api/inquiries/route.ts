@@ -1,7 +1,5 @@
-import { getDatabase } from "../../../db";
-import { env } from "cloudflare:workers";
 import { sendInquiryEmail } from "../../lib/inquiry-email";
-import { PUBLIC_CONTACT_EMAIL } from "../../lib/site";
+import { PUBLIC_CONTACT_EMAIL, INQUIRY_FORM_ENABLED } from "../../lib/site";
 
 type InquiryPayload = {
   name?: unknown;
@@ -25,6 +23,9 @@ function isSameOrigin(request: Request) {
 }
 
 export async function POST(request: Request) {
+  if (!INQUIRY_FORM_ENABLED) {
+    return Response.json({ ok: false, message: `Please email ${PUBLIC_CONTACT_EMAIL} to discuss your project.` }, { status: 503 });
+  }
   if (!isSameOrigin(request)) return Response.json({ ok: false, message: "Invalid request." }, { status: 403 });
 
   try {
@@ -51,6 +52,8 @@ export async function POST(request: Request) {
       return Response.json({ ok: false, message: "Please complete the required fields." }, { status: 400 });
     }
 
+    const { getDatabase } = await import("../../../db");
+    const { env } = await import("cloudflare:workers");
     const database = getDatabase();
     await database.prepare(
       "INSERT INTO inquiries (id, name, email, project, budget, timeline, message, source_path, delivery_status, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",

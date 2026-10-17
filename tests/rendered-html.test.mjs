@@ -31,25 +31,25 @@ test("server-renders the WiT Web Co homepage", async () => {
   assert.match(html, /<title>WiT Web Co\. — Digital work with wit, built to grow<\/title>/i);
   assert.match(html, /Digital work with/);
   assert.match(html, /Built to grow/);
-  assert.match(html, /Full-service digital studio/i);
-  assert.match(html, /iOS &amp; Android Apps/i);
-  assert.match(html, /Social Media Marketing/i);
-  assert.match(html, /Everything your/i);
-  assert.match(html, /Live work/i);
-  assert.match(html, /Earl-Bowl Lanes/i);
-  assert.match(html, /Him &amp; Ham Sports Talk/i);
-  assert.match(html, /KC Electric/i);
-  assert.match(html, /Noah Heating &amp; Air/i);
+  assert.match(html, /Independent web design and development/i);
+  assert.match(html, /AI Integrations &amp; Automation/i);
+  assert.match(html, /Website Care &amp; Improvements/i);
+  assert.match(html, /A better website/i);
+  assert.match(html, /Selected projects/i);
+  assert.match(html, /Witty Games/i);
+  assert.match(html, /Roster IQ/i);
+  assert.match(html, /Witty’s Website/i);
+
   assert.match(html, /Led by Ethan Witkowski/i);
   assert.match(html, /Simple process/i);
-  assert.match(html, /Send inquiry/i);
+  assert.match(html, /Email Ethan/i);
   assert.match(html, /ejwit007@gmail\.com/i);
   assert.match(html, /Have a project in mind/i);
   assert.doesNotMatch(html, /Built with purpose/);
   assert.match(html, /Have a project in mind/);
-  assert.match(html, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="http:\/\/localhost(?::3000)?\/?")[^>]*>/i);
+  assert.match(html, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="https:\/\/wit-web-co\.ejwit004\.workers\.dev\/?")[^>]*>/i);
   assert.match(html, /<meta(?=[^>]*\bproperty="og:site_name")(?=[^>]*\bcontent="WiT Web Co\.")[^>]*>/i);
-  assert.match(html, /<meta(?=[^>]*\bproperty="og:image")(?=[^>]*\bcontent="http:\/\/localhost(?::3000)?\/og\.png)[^>]*>/i);
+  assert.match(html, /<meta(?=[^>]*\bproperty="og:image")(?=[^>]*\bcontent="https:\/\/wit-web-co\.ejwit004\.workers\.dev\/og\.png)[^>]*>/i);
   assert.match(html, /<meta(?=[^>]*\bname="twitter:card")(?=[^>]*\bcontent="summary_large_image")[^>]*>/i);
   assert.match(html, /application\/ld\+json/i);
   assert.match(html, /ProfessionalService/);
@@ -70,26 +70,26 @@ test("serves dedicated services and work pages", async () => {
   const servicesHtml = await servicesResponse.text();
   assert.match(servicesHtml, /<title>Digital Services — WiT Web Co\.<\/title>/i);
   assert.match(servicesHtml, /scope, timing, and quote/i);
-  assert.match(servicesHtml, /Graphic Design/i);
-  assert.match(servicesHtml, /Photography/i);
-  assert.match(servicesHtml, /iOS &amp; Android Apps/i);
-  assert.match(servicesHtml, /Social Media Marketing/i);
+  assert.match(servicesHtml, /Web Apps &amp; Custom Tools/i);
+  assert.match(servicesHtml, /AI Integrations/i);
+  assert.match(servicesHtml, /AI Integrations &amp; Automation/i);
+  assert.match(servicesHtml, /Website Care &amp; Improvements/i);
   assert.doesNotMatch(servicesHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ""), /\$[0-9]|Suggested investment|Most popular|Usually [0-9]/i);
   assert.doesNotMatch((await (await render()).text()).replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ""), /\$[0-9]|pricing|outlook\.com/i);
-  assert.match(servicesHtml, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="http:\/\/localhost(?::3000)?\/services")[^>]*>/i);
+  assert.match(servicesHtml, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="https:\/\/wit-web-co\.ejwit004\.workers\.dev\/services")[^>]*>/i);
 
   assert.equal(workResponse.status, 200);
   const workHtml = await workResponse.text();
-  assert.match(workHtml, /<title>Live Web Showcase — WiT Web Co\.<\/title>/i);
-  assert.match(workHtml, /Earl-Bowl Lanes/);
-  assert.match(workHtml, /Him &amp; Ham Sports Talk/);
-  assert.match(workHtml, /KC Electric/);
-  assert.match(workHtml, /Noah Heating &amp; Air/);
-  assert.match(workHtml, /Not client work/i);
-  assert.match(workHtml, /Independent publication/i);
-  assert.match(workHtml, /https:\/\/wit-demo-earl-bowl\.ejwit004\.workers\.dev/i);
-  assert.match(workHtml, /https:\/\/him-and-ham-sports-talk\.ejwit004\.workers\.dev/i);
-  assert.match(workHtml, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="http:\/\/localhost(?::3000)?\/work")[^>]*>/i);
+  assert.match(workHtml, /<title>Selected Projects — WiT Web Co\.<\/title>/i);
+  assert.match(workHtml, /Witty Games/);
+  assert.match(workHtml, /Roster IQ/);
+  assert.match(workHtml, /Witty’s Website/);
+
+  assert.match(workHtml, /not client commissions/i);
+  assert.match(workHtml, /Independent project/i);
+  assert.match(workHtml, /https:\/\/witty-games\.ejwit004\.workers\.dev/i);
+  assert.match(workHtml, /https:\/\/roster-iq\.ejwit004\.workers\.dev/i);
+  assert.match(workHtml, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="https:\/\/wit-web-co\.ejwit004\.workers\.dev\/work")[^>]*>/i);
 });
 
 test("serves discovery metadata routes", async () => {
@@ -100,15 +100,15 @@ test("serves discovery metadata routes", async () => {
 
   assert.equal(robotsResponse.status, 200);
   assert.match(robotsResponse.headers.get("content-type") ?? "", /^text\/plain/i);
-  assert.match(await robotsResponse.text(), /Sitemap: http:\/\/localhost\/sitemap\.xml/);
+  assert.match(await robotsResponse.text(), /Sitemap: https:\/\/wit-web-co\.ejwit004\.workers\.dev\/sitemap\.xml/);
 
   assert.equal(sitemapResponse.status, 200);
   assert.match(sitemapResponse.headers.get("content-type") ?? "", /^application\/xml/i);
   const sitemap = await sitemapResponse.text();
-  assert.match(sitemap, /<loc>http:\/\/localhost\/<\/loc>/);
-  assert.match(sitemap, /<loc>http:\/\/localhost\/services<\/loc>/);
-  assert.match(sitemap, /<loc>http:\/\/localhost\/work<\/loc>/);
-  assert.match(sitemap, /<loc>http:\/\/localhost\/privacy<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/wit-web-co\.ejwit004\.workers\.dev\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/wit-web-co\.ejwit004\.workers\.dev\/services<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/wit-web-co\.ejwit004\.workers\.dev\/work<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/wit-web-co\.ejwit004\.workers\.dev\/privacy<\/loc>/);
 });
 
 test("serves a clear privacy notice", async () => {
@@ -120,4 +120,27 @@ test("serves a clear privacy notice", async () => {
   assert.match(html, /Site measurement/i);
   assert.match(html, /advertising cookies/i);
   assert.match(html, /ejwit007@gmail\.com/i);
+});
+
+// Collection must stay closed while the public site directs visitors to email.
+test("disabled inquiry endpoint never accepts or stores a submission", async () => {
+  const { default: worker } = await import("../dist/server/index.js");
+  const response = await worker.fetch(new Request("https://wit-web-co.ejwit004.workers.dev/api/inquiries", {
+    method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ name: "Test visitor", email: "test@example.com", message: "Test" }),
+  }), { ASSETS: { fetch: async () => new Response(null, { status: 404 }) } }, { waitUntil() {}, passThroughOnException() {} });
+  assert.equal(response.status, 503);
+  assert.deepEqual(await response.json(), { ok: false, message: "Please email ejwit007@gmail.com to discuss your project." });
+});
+
+test("public pages contain only the current showcase and direct contact", async () => {
+  for (const path of ["/", "/work"]) {
+    const html = await (await render(path)).text();
+    assert.doesNotMatch(html, /wit-demo-|him-and-ham-sports-talk|Earl-Bowl|Noah Heating|KC Electric/);
+    assert.match(html, /https:\/\/ew994895\.github\.io\/WittysWebsite\//);
+  }
+  const home = await (await render()).text();
+  assert.doesNotMatch(home, /<form\b|Send inquiry/);
+  assert.match(home, /mailto:ejwit007@gmail\.com/);
+  const sitemap = await (await render("/sitemap.xml")).text();
+  assert.doesNotMatch(sitemap, /<lastmod>/);
 });

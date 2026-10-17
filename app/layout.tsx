@@ -1,30 +1,15 @@
-import { headers } from "next/headers";
 import type { Metadata } from "next";
 import { Analytics } from "./components/Analytics";
-import { getContactEmail } from "./lib/site";
+import { getContactEmail, SITE_URL } from "./lib/site";
 import "./globals.css";
 
 const title = "WiT Web Co. — Digital work with wit, built to grow";
 const description =
-  "A full-service digital studio creating websites, iOS and Android apps, brand design, photography, SEO, and social campaigns for growing businesses.";
+  "Independent web design and development in West Chester, PA. Websites, custom tools, AI integrations, and ongoing care for small businesses.";
 
-async function getRequestBaseUrl() {
-  const requestHeaders = await headers();
-  const forwardedHost = requestHeaders.get("x-forwarded-host");
-  const host = forwardedHost ?? requestHeaders.get("host") ?? "localhost:3000";
-  const protocol =
-    requestHeaders.get("x-forwarded-proto") ??
-    (host.startsWith("localhost") || host.startsWith("127.0.0.1") ? "http" : "https");
-
-  try {
-    return new URL(`${protocol}://${host}`);
-  } catch {
-    return new URL("http://localhost:3000");
-  }
-}
 
 export async function generateMetadata(): Promise<Metadata> {
-  const baseUrl = await getRequestBaseUrl();
+  const baseUrl = new URL(SITE_URL);
 
   return {
     metadataBase: baseUrl,
@@ -34,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
     icons: { icon: { url: "/icon", type: "image/png", sizes: "64x64" } },
     openGraph: {
       title,
-      description: "Websites, mobile apps, creative, and digital growth for businesses ready to look sharp and move with purpose.",
+      description: "Websites and practical digital tools for small businesses. Built with direct collaboration and care.",
       type: "website",
       siteName: "WiT Web Co.",
       url: "/",
@@ -48,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title,
-      description: "Websites, mobile apps, creative, and digital growth for businesses ready to look sharp and move with purpose.",
+      description: "Websites and practical digital tools for small businesses. Built with direct collaboration and care.",
       images: ["/og.png"],
     },
   };
@@ -59,7 +44,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const baseUrl = await getRequestBaseUrl();
+  const baseUrl = new URL(SITE_URL);
   const contactEmail = getContactEmail();
   const structuredData = {
     "@context": "https://schema.org",
@@ -75,12 +60,11 @@ export default async function RootLayout({
       "Web strategy",
       "Web design",
       "Web development",
-      "iOS application development",
-      "Android application development",
-      "Graphic design",
-      "Photography",
+      "Web applications",
+      "AI integrations",
+      "Workflow automation",
       "Search engine optimization",
-      "Social media marketing",
+      "Website maintenance",
     ],
     email: contactEmail,
   };

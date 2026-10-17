@@ -8,18 +8,18 @@ export function ProjectGrid({ compact = false }: { compact?: boolean }) {
         <article className="demo-card" key={project.name}>
           <a
             className="demo-image"
-            href={project.demoUrl}
+            href={project.url}
             target="_blank"
             rel="noreferrer"
-            data-track="open_demo"
+            data-track="open_project"
             aria-label={`Open ${project.name} in a new tab`}
           >
             <Image
               src={project.image}
               alt={project.imageAlt}
-              width={1536}
-              height={1024}
-              sizes={compact ? "(max-width: 700px) 100vw, 50vw" : "(max-width: 900px) 100vw, 50vw"}
+              width={1200}
+              height={800}
+              sizes="(max-width: 900px) 100vw, 50vw"
             />
             <span className="demo-launch">{project.linkLabel} ↗</span>
           </a>
@@ -31,8 +31,8 @@ export function ProjectGrid({ compact = false }: { compact?: boolean }) {
             <div className="tag-row" aria-label={`${project.name} capabilities`}>
               {project.services.map((service) => <span key={service}>{service}</span>)}
             </div>
-            <a className="text-link" href={project.demoUrl} target="_blank" rel="noreferrer" data-track="open_demo">
-              Explore the website <span aria-hidden="true">↗</span>
+            <a className="text-link" href={project.url} target="_blank" rel="noreferrer" data-track="open_project">
+              {project.linkLabel} <span aria-hidden="true">↗</span>
             </a>
           </div>
         </article>
