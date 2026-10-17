@@ -1,6 +1,7 @@
 /** Cloudflare Worker entry point for the WiT Web Co site. */
 import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } from "vinext/server/image-optimization";
 import handler from "vinext/server/app-router-entry";
+import { SITE_URL } from "../app/lib/site";
 
 interface AssetFetcher {
   fetch(request: Request): Promise<Response>;
@@ -61,6 +62,19 @@ function withSecurityHeaders(request: Request, response: Response) {
 const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+
+    // Preserve paths, queries, and request methods when moving public visitors
+    // to the permanent HTTPS address. Local and preview hosts stay independent.
+    const canonical = new URL(SITE_URL);
+    if (
+      url.hostname === "www.witwebco.com" ||
+      url.hostname === "wit-web-co.ejwit004.workers.dev" ||
+      (url.hostname === canonical.hostname && url.protocol !== "https:")
+    ) {
+      url.protocol = canonical.protocol;
+      url.host = canonical.host;
+      return withSecurityHeaders(request, Response.redirect(url.href, 308));
+    }
 
     if (url.pathname === "/_vinext/image") {
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];

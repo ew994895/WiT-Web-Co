@@ -14,6 +14,11 @@ const localBindingConfig = {
   compatibility_date: "2026-08-22",
   compatibility_flags: ["nodejs_compat"],
   preview_urls: true,
+  workers_dev: true,
+  routes: [
+    { pattern: "witwebco.com", custom_domain: true as const },
+    { pattern: "www.witwebco.com", custom_domain: true as const },
+  ],
   assets: {
     binding: "ASSETS",
     not_found_handling: "none" as const,

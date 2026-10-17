@@ -45,9 +45,9 @@ test("server-renders the WiT Web Co homepage", async () => {
   assert.match(html, /Have a project in mind/i);
   assert.doesNotMatch(html, /Built with purpose/);
   assert.match(html, /Have a project in mind/);
-  assert.match(html, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="https:\/\/wit-web-co\.ejwit004\.workers\.dev\/?")[^>]*>/i);
+  assert.match(html, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="https:\/\/witwebco\.com\/?")[^>]*>/i);
   assert.match(html, /<meta(?=[^>]*\bproperty="og:site_name")(?=[^>]*\bcontent="WiT Web Co\.")[^>]*>/i);
-  assert.match(html, /<meta(?=[^>]*\bproperty="og:image")(?=[^>]*\bcontent="https:\/\/wit-web-co\.ejwit004\.workers\.dev\/og\.png)[^>]*>/i);
+  assert.match(html, /<meta(?=[^>]*\bproperty="og:image")(?=[^>]*\bcontent="https:\/\/witwebco\.com\/og\.png)[^>]*>/i);
   assert.match(html, /<meta(?=[^>]*\bname="twitter:card")(?=[^>]*\bcontent="summary_large_image")[^>]*>/i);
   assert.match(html, /application\/ld\+json/i);
   assert.match(html, /ProfessionalService/);
@@ -74,7 +74,7 @@ test("serves dedicated services and work pages", async () => {
   assert.match(servicesHtml, /Website Care &amp; Improvements/i);
   assert.doesNotMatch(servicesHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ""), /\$[0-9]|Suggested investment|Most popular|Usually [0-9]/i);
   assert.doesNotMatch((await (await render()).text()).replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ""), /\$[0-9]|pricing|outlook\.com/i);
-  assert.match(servicesHtml, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="https:\/\/wit-web-co\.ejwit004\.workers\.dev\/services")[^>]*>/i);
+  assert.match(servicesHtml, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="https:\/\/witwebco\.com\/services")[^>]*>/i);
 
   assert.equal(workResponse.status, 200);
   const workHtml = await workResponse.text();
@@ -87,7 +87,7 @@ test("serves dedicated services and work pages", async () => {
   assert.match(workHtml, /Independent project/i);
   assert.match(workHtml, /https:\/\/witty-games\.ejwit004\.workers\.dev/i);
   assert.match(workHtml, /https:\/\/roster-iq\.ejwit004\.workers\.dev/i);
-  assert.match(workHtml, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="https:\/\/wit-web-co\.ejwit004\.workers\.dev\/work")[^>]*>/i);
+  assert.match(workHtml, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="https:\/\/witwebco\.com\/work")[^>]*>/i);
 });
 
 test("serves discovery metadata routes", async () => {
@@ -98,15 +98,15 @@ test("serves discovery metadata routes", async () => {
 
   assert.equal(robotsResponse.status, 200);
   assert.match(robotsResponse.headers.get("content-type") ?? "", /^text\/plain/i);
-  assert.match(await robotsResponse.text(), /Sitemap: https:\/\/wit-web-co\.ejwit004\.workers\.dev\/sitemap\.xml/);
+  assert.match(await robotsResponse.text(), /Sitemap: https:\/\/witwebco\.com\/sitemap\.xml/);
 
   assert.equal(sitemapResponse.status, 200);
   assert.match(sitemapResponse.headers.get("content-type") ?? "", /^application\/xml/i);
   const sitemap = await sitemapResponse.text();
-  assert.match(sitemap, /<loc>https:\/\/wit-web-co\.ejwit004\.workers\.dev\/<\/loc>/);
-  assert.match(sitemap, /<loc>https:\/\/wit-web-co\.ejwit004\.workers\.dev\/services<\/loc>/);
-  assert.match(sitemap, /<loc>https:\/\/wit-web-co\.ejwit004\.workers\.dev\/work<\/loc>/);
-  assert.match(sitemap, /<loc>https:\/\/wit-web-co\.ejwit004\.workers\.dev\/privacy<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/witwebco\.com\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/witwebco\.com\/services<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/witwebco\.com\/work<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/witwebco\.com\/privacy<\/loc>/);
 });
 
 test("serves a clear privacy notice", async () => {
@@ -123,7 +123,7 @@ test("serves a clear privacy notice", async () => {
 // Collection must stay closed while the public site directs visitors to email.
 test("disabled inquiry endpoint never accepts or stores a submission", async () => {
   const { default: worker } = await import("../dist/server/index.js");
-  const response = await worker.fetch(new Request("https://wit-web-co.ejwit004.workers.dev/api/inquiries", {
+  const response = await worker.fetch(new Request("https://witwebco.com/api/inquiries", {
     method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ name: "Test visitor", email: "test@example.com", message: "Test" }),
   }), { ASSETS: { fetch: async () => new Response(null, { status: 404 }) } }, { waitUntil() {}, passThroughOnException() {} });
   assert.equal(response.status, 503);
@@ -141,4 +141,17 @@ test("public pages contain only the current showcase and direct contact", async 
   assert.match(home, /mailto:ejwit007@gmail\.com/);
   const sitemap = await (await render("/sitemap.xml")).text();
   assert.doesNotMatch(sitemap, /<lastmod>/);
+});
+
+
+test("public aliases redirect to HTTPS without losing the path or query", async () => {
+  const { default: worker } = await import("../dist/server/index.js");
+  for (const origin of ["https://www.witwebco.com", "http://www.witwebco.com", "http://witwebco.com", "https://wit-web-co.ejwit004.workers.dev"]) {
+    const response = await worker.fetch(new Request(`${origin}/work?source=launch&project=games`), {}, {});
+    assert.equal(response.status, 308);
+    assert.equal(response.headers.get("location"), "https://witwebco.com/work?source=launch&project=games");
+  }
+  const response = await worker.fetch(new Request("https://www.witwebco.com/api/inquiries", { method: "POST", body: "test" }), {}, {});
+  assert.equal(response.status, 308);
+  assert.equal(response.headers.get("location"), "https://witwebco.com/api/inquiries");
 });

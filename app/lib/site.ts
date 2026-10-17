@@ -1,4 +1,4 @@
-export const SITE_URL = "https://wit-web-co.ejwit004.workers.dev";
+export const SITE_URL = "https://witwebco.com";
 // Keep the collection endpoint closed until delivery and abuse protection are verified.
 export const INQUIRY_FORM_ENABLED = false;
 

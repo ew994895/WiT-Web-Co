@@ -10,7 +10,11 @@ not a ChatGPT Sites publication. The production Worker is `wit-web-co`; its
 existing D1 database is configured in `vite.config.ts`. Do not reintroduce Sites
 hosting configuration or use Sites publishing tools for this project.
 
-Live website: https://wit-web-co.ejwit004.workers.dev
+Live website: https://witwebco.com
+
+Both `witwebco.com` and `www.witwebco.com` are configured as custom domains on
+the existing Worker. The `www` and original Workers addresses redirect to the
+primary HTTPS address, preserving paths and query strings.
 
 Before publishing, run `npm run verify`, commit the release changes, push to
 GitHub, and verify the remote branch points to that commit. Then run
@@ -79,7 +83,7 @@ Anonymous conversion events do not contain inquiry details.
 
 ## Launch follow-up
 
-- Confirm the permanent custom domain before changing `SITE_URL` in `app/lib/site.ts`; canonical, structured data, robots, and sitemap share that source.
+- The permanent domain is `witwebco.com`. Canonical URLs, structured data, robots, and sitemap share `SITE_URL` in `app/lib/site.ts`.
 - Complete email provider setup and delivery verification before enabling form collection.
 - Review each independent product separately before promoting it as a production service.
 - Keep AI integrations scoped individually; no AI provider is called by this marketing website.
