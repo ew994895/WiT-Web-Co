@@ -28,30 +28,22 @@ export default function WorkPage() {
       <a className="skip-link" href="#main-content">Skip to main content</a>
       <SiteHeader />
       <main id="main-content">
-        <section className="inner-hero section-shell">
-          <p className="eyebrow"><span /> Independent projects</p>
-          <div className="inner-hero-grid">
-            <h1>Ideas made<br /><em>into real things.</em></h1>
-            <div>
-              <p>Explore the games, tools, and personal work I’m building. Each project offers a different look at how I turn an idea into a usable experience.</p>
-              <a className="text-link" href="#selected-projects">Explore every site <span aria-hidden="true">↓</span></a>
+        <section className="work-intro section-shell">
+          <div className="work-intro-top"><p className="eyebrow"><span /> The work</p><span>INDEPENDENTLY BUILT BY ETHAN WITKOWSKI</span></div>
+          <div className="work-intro-grid">
+            <h1>Good ideas.<br /><em>Go explore.</em></h1>
+            <div><p>A place to play. An edge for your league. A look behind the work. Pick a project and make yourself at home.</p>
+              <nav className="project-jump-links" aria-label="Explore projects"><a href="#games">01 / Play</a><a href="#roster">02 / Research</a><a href="#portfolio">03 / Discover</a></nav>
             </div>
           </div>
         </section>
-
-        <section className="work-showcase" id="selected-projects" aria-labelledby="projects-title">
-          <div className="showcase-intro section-shell">
-            <p className="section-kicker light">Built by Ethan Witkowski</p>
-            <h2 id="projects-title">Three projects.<br /><em>A personal point of view.</em></h2>
-            <p>These are my own products and portfolio, not client commissions. They show my approach to playful interactions, information design, and building for the web. The projects continue to evolve.</p>
-          </div>
-          <div className="section-shell"><ProjectGrid /></div>
+        <section className="work-gallery section-shell" aria-label="Independent projects">
+          <ProjectGrid />
+          <p className="work-ownership">Personal products and experiments by Ethan Witkowski. Built to be used, and always evolving.</p>
         </section>
-
-        <section className="page-cta section-shell">
-          <p className="section-kicker">Your business deserves its own direction</p>
-          <h2>Have an idea of your own?<br /><em>Let&apos;s make yours.</em></h2>
-          <a className="button button-dark" href="/#contact" data-track="cta_start_project">Start a conversation <span aria-hidden="true">↗</span></a>
+        <section className="work-closing section-shell">
+          <div><p className="section-kicker">Your idea could be next</p><h2>Let’s build something<br /><em>worth opening.</em></h2></div>
+          <a className="button button-dark" href="/#contact" data-track="cta_start_project">Tell me your idea <span aria-hidden="true">↗</span></a>
         </section>
       </main>
       <SiteFooter />

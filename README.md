@@ -97,3 +97,11 @@ The full npm audit reports 11 remaining development/build dependency findings
 Drizzle Kit's older esbuild toolchain. The production-only audit reports none.
 These are unresolved dependency findings, not a completed security audit; do
 not use forced package downgrades as a substitute for a tested tooling update.
+
+## Project showcase
+
+The homepage links to `/work` without displaying individual projects. The Work
+page uses the original Witty Games favicon and game icons, Witty’s Website SVG
+logo from its GitHub repository, and Roster IQ’s existing HTML/CSS wordmark.
+The project panels link directly to their respective live sites. These are
+personal projects, not claimed client commissions.

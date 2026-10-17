@@ -35,10 +35,8 @@ test("server-renders the WiT Web Co homepage", async () => {
   assert.match(html, /AI Integrations &amp; Automation/i);
   assert.match(html, /Website Care &amp; Improvements/i);
   assert.match(html, /A better website/i);
-  assert.match(html, /Selected projects/i);
-  assert.match(html, /Witty Games/i);
-  assert.match(html, /Roster IQ/i);
-  assert.match(html, /Witty’s Website/i);
+  assert.match(html, /Explore the work/i);
+  assert.doesNotMatch(html, /Witty Games|Roster IQ|Witty’s Website|witty-games\.ejwit004|roster-iq\.ejwit004/);
 
   assert.match(html, /Led by Ethan Witkowski/i);
   assert.match(html, /Simple process/i);
@@ -85,7 +83,7 @@ test("serves dedicated services and work pages", async () => {
   assert.match(workHtml, /Roster IQ/);
   assert.match(workHtml, /Witty’s Website/);
 
-  assert.match(workHtml, /not client commissions/i);
+  assert.match(workHtml, /Personal products and experiments/i);
   assert.match(workHtml, /Independent project/i);
   assert.match(workHtml, /https:\/\/witty-games\.ejwit004\.workers\.dev/i);
   assert.match(workHtml, /https:\/\/roster-iq\.ejwit004\.workers\.dev/i);
@@ -136,7 +134,7 @@ test("public pages contain only the current showcase and direct contact", async 
   for (const path of ["/", "/work"]) {
     const html = await (await render(path)).text();
     assert.doesNotMatch(html, /wit-demo-|him-and-ham-sports-talk|Earl-Bowl|Noah Heating|KC Electric/);
-    assert.match(html, /https:\/\/ew994895\.github\.io\/WittysWebsite\//);
+    if (path === "/work") assert.match(html, /https:\/\/ew994895\.github\.io\/WittysWebsite\//);
   }
   const home = await (await render()).text();
   assert.doesNotMatch(home, /<form\b|Send inquiry/);

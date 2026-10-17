@@ -2,7 +2,6 @@ import { ContactCard } from "./components/ContactCard";
 import { services } from "./data/services";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
-import { ProjectGrid } from "./components/ProjectGrid";
 import { getContactEmail } from "./lib/site";
 
 const steps = [
@@ -81,21 +80,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="demo-section" aria-labelledby="demo-title">
-        <div className="section-heading section-shell">
-          <div>
-            <p className="section-kicker">Selected projects</p>
-            <h2 id="demo-title">See what we can<br /><em>actually build.</em></h2>
-          </div>
-          <p>Witty Games, Roster IQ, and my personal portfolio. Independent projects that show how I approach design, development, and useful interactions.</p>
-        </div>
-        <div className="section-shell">
-          <ProjectGrid compact />
-        </div>
-        <div className="work-action section-shell">
-          <a className="button button-dark" href="/work" data-track="view_work">Explore the projects <span aria-hidden="true">↗</span></a>
-        </div>
-      </section>
+      <div className="home-work-link section-shell">
+        <p>Curious what that looks like?</p>
+        <a className="text-link" href="/work" data-track="view_work">Explore the work <span aria-hidden="true">↗</span></a>
+      </div>
 
       <section className="about-section" id="about" aria-labelledby="about-title">
         <div className="about-art" aria-hidden="true">
