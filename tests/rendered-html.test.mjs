@@ -38,9 +38,9 @@ test("server-renders the WiT Web Co homepage", async () => {
   assert.match(html, /Hosting, email, payments/);
   assert.match(html, /WiT LEAD FINDER/);
   assert.match(html, /Independent products/);
-  assert.match(html, /Hey, I’m Ethan/);
+  assert.match(html, /Meet Ethan/);
   assert.match(html, /Simple process/);
-  assert.match(html, /Email Ethan/);
+  assert.match(html, /href="\/contact"/);
   assert.match(html, /ejwit007@gmail\.com/);
   assert.doesNotMatch(html, /AI Integrations|A little wit|Sculpture shape/);
   assert.match(html, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="https:\/\/witwebco\.com\/?")[^>]*>/i);
@@ -90,6 +90,29 @@ test("serves dedicated services and work pages", async () => {
   assert.match(workHtml, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="https:\/\/witwebco\.com\/work")[^>]*>/i);
 });
 
+test("About and Let's Talk have standalone pages and direct navigation", async () => {
+  for (const [path, title, content] of [
+    ["/about", "About Ethan — WiT Web Co.", "Hey, I’m Ethan"],
+    ["/contact", "Let’s Talk — WiT Web Co.", "Email Ethan"],
+  ]) {
+    const response = await render(path);
+    assert.equal(response.status, 200);
+    const html = await response.text();
+    assert.ok(html.includes(`<title>${title}</title>`));
+    assert.ok(html.includes(content));
+    assert.equal((html.match(/<h1[ >]/g) ?? []).length, 1);
+    assert.ok(html.includes(`href="https://witwebco.com${path}"`));
+    const nav = html.match(/<nav\b[^>]*aria-label="Main navigation"[^>]*>([\s\S]*?)<\/nav>/)?.[1] ?? "";
+    assert.match(nav, /href="\/"[^>]*>Home<\/a>/);
+    assert.match(nav, /href="\/about"/);
+    assert.match(nav, /href="\/contact"/);
+    assert.doesNotMatch(nav, /href="\/#(?:about|contact)"/);
+    assert.doesNotMatch(html, /<form\b/);
+  }
+  const contact = await (await render("/contact")).text();
+  assert.match(contact, /mailto:ejwit007@gmail\.com/);
+});
+
 test("serves discovery metadata routes", async () => {
   const [robotsResponse, sitemapResponse] = await Promise.all([
     render("/robots.txt"),
@@ -107,6 +130,8 @@ test("serves discovery metadata routes", async () => {
   assert.match(sitemap, /<loc>https:\/\/witwebco\.com\/services<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/witwebco\.com\/work<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/witwebco\.com\/privacy<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/witwebco\.com\/about<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/witwebco\.com\/contact<\/loc>/);
 });
 
 test("serves a clear privacy notice", async () => {

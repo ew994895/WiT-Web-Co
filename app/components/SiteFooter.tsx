@@ -11,6 +11,8 @@ export function SiteFooter() {
       <div className="footer-links">
         <span>© 2026 WiT Web Co.</span>
         <a href={`mailto:${PUBLIC_CONTACT_EMAIL}`} data-track="email_click">Email</a>
+        <a href="/about">About</a>
+        <a href="/contact">Let’s talk</a>
         <a href="/privacy">Privacy</a>
         <a href="/#top">Back to top ↑</a>
       </div>

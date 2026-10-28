@@ -4,9 +4,10 @@
 import { useEffect, useRef, useState } from "react";
 
 const navigation = [
+  ["Home", "/"],
   ["Work", "/work"],
   ["The approach", "/services"],
-  ["About", "/#about"],
+  ["About", "/about"],
 ];
 
 export function SiteHeader() {
@@ -84,7 +85,7 @@ export function SiteHeader() {
         {navigation.map(([label, href]) => (
           <a href={href} onClick={closeMenu} key={href}>{label}</a>
         ))}
-        <a className="nav-cta" href="/#contact" onClick={closeMenu} data-track="cta_start_project">Let&apos;s talk</a>
+        <a className="nav-cta" href="/contact" onClick={closeMenu} data-track="cta_start_project">Let&apos;s talk</a>
       </nav>
     </header>
   );

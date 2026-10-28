@@ -26,6 +26,13 @@ change its data coverage, search limits, browser-local storage, or service terms
 The discarded local design direction was backed up to
 `/private/tmp/wit-web-co-discarded-direction-20261028` before replacement.
 
+## Dedicated pages — October 28, 2026
+
+About (`/about`) and Let's Talk (`/contact`) have their own pages and metadata.
+The homepage keeps short introductions linking to them. Navigation includes an
+explicit Home link, and project CTAs go to `/contact`. Both new pages are in the
+sitemap. Contact remains email-only; form delivery is still unconfigured.
+
 ## Hosting
 
 This is an independent company website deployed directly to Cloudflare Workers,

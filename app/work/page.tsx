@@ -43,7 +43,7 @@ export default function WorkPage() {
         </section>
         <section className="work-closing section-shell">
           <div><p className="section-kicker">Your idea could be next</p><h2>Let’s build something<br /><em>worth opening.</em></h2></div>
-          <a className="button button-dark" href="/#contact" data-track="cta_start_project">Tell me your idea <span aria-hidden="true">↗</span></a>
+          <a className="button button-dark" href="/contact" data-track="cta_start_project">Tell me your idea <span aria-hidden="true">↗</span></a>
         </section>
       </main>
       <SiteFooter />
