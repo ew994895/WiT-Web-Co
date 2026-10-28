@@ -124,3 +124,5 @@
 @media(max-width:650px){.home-about-link{grid-template-columns:1fr;gap:25px;padding-block:60px}.home-about-link p:not(.section-kicker){font-size:15px}.about-page .founder-copy h1{font-size:clamp(37px,9.5vw,52px)}.contact-page{margin-top:20px;min-height:0}.contact-page h1{font-size:clamp(47px,12vw,65px)}}
 
 @media(max-width:650px){.about-page .founder-copy{order:-1}}
+
+.about-links{display:flex;flex-wrap:wrap;gap:0 24px;align-items:flex-start}
