@@ -3,9 +3,9 @@ import { Analytics } from "./components/Analytics";
 import { getContactEmail, SITE_URL } from "./lib/site";
 import "./globals.css";
 
-const title = "WiT Web Co. — Digital work with wit, built to grow";
+const title = "WiT Web Co. — Your business. Your website. Your call.";
 const description =
-  "Independent web design and development in West Chester, PA. Websites, custom tools, AI integrations, and ongoing care for small businesses.";
+  "Custom websites for local businesses in West Chester, PA. Built by Ethan, owned by you, with clear project quotes and help when you need it.";
 
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
     icons: { icon: { url: "/icon", type: "image/png", sizes: "64x64" } },
     openGraph: {
       title,
-      description: "Websites and practical digital tools for small businesses. Built with direct collaboration and care.",
+      description: "Custom websites for local businesses. Real ownership, personal service, and updates on your terms.",
       type: "website",
       siteName: "WiT Web Co.",
       url: "/",
@@ -27,13 +27,13 @@ export async function generateMetadata(): Promise<Metadata> {
         url: "/og.png",
         width: 1792,
         height: 935,
-        alt: "WiT Web Co. — Digital work with wit. Built to grow.",
+        alt: "WiT Web Co. — Your business. Your website. Your call.",
       }],
     },
     twitter: {
       card: "summary_large_image",
       title,
-      description: "Websites and practical digital tools for small businesses. Built with direct collaboration and care.",
+      description: "Custom websites for local businesses. Real ownership, personal service, and updates on your terms.",
       images: ["/og.png"],
     },
   };
@@ -61,8 +61,6 @@ export default async function RootLayout({
       "Web design",
       "Web development",
       "Web applications",
-      "AI integrations",
-      "Workflow automation",
       "Search engine optimization",
       "Website maintenance",
     ],

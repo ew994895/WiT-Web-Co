@@ -1,5 +1,14 @@
 export const showcaseProjects = [
   {
+    id: "leads",
+    name: "WiT Lead Finder",
+    category: "Local business research",
+    headline: "Your next connection, closer to home.",
+    description: "Explore nearby public business listings by ZIP code and radius. Filter results, save leads and notes in your browser, and export your research. Coverage varies; verify details before outreach.",
+    linkLabel: "Find local businesses",
+    url: "https://wit-lead-finder.ejwit004.workers.dev/",
+  },
+  {
     id: "games",
     name: "Witty Games",
     category: "A little world of play",

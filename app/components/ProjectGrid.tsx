@@ -2,6 +2,7 @@
 import { showcaseProjects } from "../data/projects";
 
 function ProjectBrand({ id }: { id: string }) {
+  if (id === "leads") return <span className="product-brand"><span className="lead-brand-icon" aria-hidden="true">W</span><span>WiT Lead Finder</span></span>;
   if (id === "games") return (
     <span className="product-brand games-brand" aria-label="Witty Games">
       <img src="/projects/witty-games-logo.svg" width="52" height="52" alt="" />
@@ -24,6 +25,7 @@ function ProjectBrand({ id }: { id: string }) {
 }
 
 function ProjectVisual({ id }: { id: string }) {
+  if (id === "leads") return <div className="lead-map-art" aria-hidden="true"><div className="map-road" /><span className="map-pin pin-one">W</span><span className="map-pin pin-two">↗</span><span className="map-pin pin-three">✳</span><span className="map-caption">SEARCH LOCAL. FIND POSSIBILITY.</span></div>;
   if (id === "games") return (
     <div className="game-playground" aria-hidden="true">
       <div className="playground-ring ring-a" /><div className="playground-ring ring-b" />

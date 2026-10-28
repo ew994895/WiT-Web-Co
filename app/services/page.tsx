@@ -1,81 +1,21 @@
-import { services } from "../data/services";
 import type { Metadata } from "next";
-/* eslint-disable @next/next/no-html-link-for-pages */
+import Link from "next/link";
+import { services } from "../data/services";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
-
 export const metadata: Metadata = {
-  title: "Digital Services — WiT Web Co.",
-  description: "Website design, custom web apps, AI integrations, and website care. Every project is scoped and quoted individually.",
+  title: "Websites & Ownership — WiT Web Co.",
+  description: "Custom websites for local businesses, portfolios, catalogs, and help when you need it. Clear scope, real ownership, and individual project quotes.",
   alternates: { canonical: "/services" },
-  openGraph: {
-    title: "Digital Services — WiT Web Co.",
-    description: "Websites, custom tools, and practical AI integrations for small businesses.",
-    type: "website",
-    siteName: "WiT Web Co.",
-    url: "/services",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Digital Services — WiT Web Co.",
-    description: "Websites, custom tools, and practical AI integrations for small businesses.",
-  },
+  openGraph: { title: "Websites & Ownership — WiT Web Co.", description: "Built locally. Owned by you. Supported on your terms.", url: "/services" },
+  twitter: { card: "summary_large_image", title: "Websites & Ownership — WiT Web Co.", description: "Built locally. Owned by you. Supported on your terms." },
 };
-
-
 export default function ServicesPage() {
-  return (
-    <>
-      <a className="skip-link" href="#main-content">Skip to main content</a>
-      <SiteHeader />
-      <main id="main-content">
-        <section className="inner-hero services-hero section-shell">
-          <p className="eyebrow"><span /> Websites, tools &amp; ongoing care</p>
-          <div className="inner-hero-grid">
-            <h1>Your next step.<br /><em>Thoughtfully built.</em></h1>
-            <div>
-              <p>From the first strategy session to the final launch, connect the services your business actually needs—without juggling a collection of vendors.</p>
-              <a className="button button-dark" href="#service-catalog">See every service <span aria-hidden="true">↓</span></a>
-            </div>
-          </div>
-        </section>
-
-        <section className="capabilities-section service-catalog-section" id="service-catalog" aria-labelledby="capabilities-title">
-          <div className="capabilities-heading section-shell">
-            <p className="section-kicker light">What we can do</p>
-            <h2 id="capabilities-title">Start with a need.<br />Build <em>what helps.</em></h2>
-          </div>
-          <div className="capability-grid section-shell">
-            {services.map(({ name, description, tags }, index) => (
-              <article key={name}>
-                <span>0{index + 1}</span>
-                <h3>{name}</h3>
-                <p>{description}</p>
-                <small>{tags}</small>
-              </article>
-            ))}
-          </div>
-          <div className="catalog-action section-shell">
-            <p>Need mobile app development, branding, photography, or content support? Bring it to the conversation. We’ll confirm the right approach and scope before committing.</p>
-            <a className="button button-lime" href="/#contact">Discuss your project <span aria-hidden="true">↗</span></a>
-          </div>
-        </section>
-
-        <section className="service-detail section-shell" aria-labelledby="ai-title">
-          <p className="section-kicker">Practical AI, with a clear purpose</p>
-          <h2 id="ai-title">Less repetitive work.<br />More room for your business.</h2>
-          <p>Start with one useful workflow: answer common questions from approved business information, summarize incoming inquiries, or prepare drafts for your review.</p>
-          <p>We’ll define what the tool can do, where a person stays involved, and how data, usage limits, and ongoing provider costs are handled before building. Scope and quotes are individual to each project.</p>
-        </section>
-
-        <section className="page-cta section-shell">
-          <p className="section-kicker">Every project starts with a conversation</p>
-          <h2>Bring the ambition.<br /><em>We&apos;ll build the plan.</em></h2>
-          <p>Share what you have in mind. We’ll shape the scope, timing, and quote around your project.</p>
-          <a className="button button-dark" href="/#contact">Start a conversation <span aria-hidden="true">↗</span></a>
-        </section>
-      </main>
-      <SiteFooter />
-    </>
-  );
+  return <><a className="skip-link" href="#main-content">Skip to main content</a><SiteHeader /><main id="main-content">
+    <section className="inner-hero section-shell" id="top"><p className="eyebrow"><span /> BUILT AROUND YOUR BUSINESS</p><div className="inner-hero-grid"><h1>A place to grow.<br /><em>On your terms.</em></h1><div><p>A clear website. A useful catalog. A tool that makes the day easier. Let’s build what your business needs, with the ownership and support to match.</p><Link className="button button-dark" href="/#contact">Talk it through ↗</Link></div></div></section>
+    <section className="services-section" aria-labelledby="services-title"><div className="section-shell"><div className="section-heading"><div><p className="section-kicker light">WHAT WE CAN BUILD</p><h2 id="services-title">Start with your business.<br /><em>Build from there.</em></h2></div><p>Scope, timing, and quote are individual to your project. These are starting points for a conversation.</p></div><div className="service-list">{services.map((service, index) => <article className="service-item" key={service.name}><span>0{index + 1}</span><h3>{service.name}</h3><div><p>{service.description}</p><small>{service.tags}</small></div></article>)}</div></div></section>
+    <section className="ownership-details section-shell" id="ownership-details" aria-labelledby="ownership-details-title"><div className="section-heading"><div><p className="section-kicker">THE DETAILS BEHIND THE PROMISE</p><h2 id="ownership-details-title">Your website.<br /><em>Keys included.</em></h2></div><p>Ownership is part of the setup, the agreement, and the handoff.</p></div><div className="detail-grid"><article><span>01 / THE BUILD</span><h3>A project, clearly agreed.</h3><p>Your proposal sets out pages, features, content responsibilities, revision rounds, timing, payment milestones, launch checks, and the period for fixing launch-related defects. Additional work gets a separate estimate.</p></article><article><span>02 / THE ACCOUNTS</span><h3>You stay in control.</h3><p>Your domain, hosting, business email, analytics, and payment accounts belong under your control. I receive appropriate access to do the work. We document the services and who pays for them.</p></article><article><span>03 / THE HANDOFF</span><h3>Keep it. Run it. Move it.</h3><p>On full payment, you receive your project source, deployment information, account access, and practical instructions. The agreement explains custom-work ownership and the licenses for reusable components and third-party assets, so another developer can maintain the finished site.</p></article><article><span>04 / WHAT COMES NEXT</span><h3>Help when you need it.</h3><p>Simple websites do not require a monthly WiT maintenance subscription. Send a change request, approve the scope and quote, and I schedule it. Optional care can cover regular reviews and updates; response times and support boundaries are agreed in writing.</p></article></div><div className="cost-note"><span aria-hidden="true">↳</span><div><h3>Independent doesn’t mean every service is free.</h3><p>Domain renewals, hosting, email, payment processing, and some tools or licenses can have ongoing fees. We disclose expected costs upfront. Commerce, databases, and other dynamic systems need suitable updates, backups, security, and support arrangements.</p></div></div></section>
+    <section className="platform-note section-shell"><p className="section-kicker">THE RIGHT TOOL FOR THE BUSINESS</p><h2>A fresh start.<br /><em>Or a smarter next step.</em></h2><p>You may not need to replace everything. We review your current website and choose what makes sense. For stores, payments, and gift cards, established commerce services often remain the right fit. Migration, content editing, and any integrations are scoped before work begins.</p></section>
+    <section className="page-cta section-shell"><p className="section-kicker">LET’S FIND YOUR NEXT STEP</p><h2>Your business has a story.<br /><em>Let’s give it a home.</em></h2><Link className="button button-dark" href="/#contact">Introduce your business ↗</Link></section>
+  </main><SiteFooter /></>;
 }

@@ -28,23 +28,21 @@ test("server-renders the WiT Web Co homepage", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>WiT Web Co\. — Digital work with wit, built to grow<\/title>/i);
-  assert.match(html, /Digital work with/);
-  assert.match(html, /Built to grow/);
-  assert.match(html, /Independent web design and development/i);
-  assert.match(html, /AI Integrations &amp; Automation/i);
-  assert.match(html, /Website Care &amp; Improvements/i);
-  assert.match(html, /A better website/i);
-  assert.match(html, /Explore the work/i);
-  assert.doesNotMatch(html, /Witty Games|Roster IQ|Witty’s Website|witty-games\.ejwit004|roster-iq\.ejwit004/);
-
-  assert.match(html, /Led by Ethan Witkowski/i);
-  assert.match(html, /Simple process/i);
-  assert.match(html, /Email Ethan/i);
-  assert.match(html, /ejwit007@gmail\.com/i);
-  assert.match(html, /Have a project in mind/i);
-  assert.doesNotMatch(html, /Built with purpose/);
-  assert.match(html, /Have a project in mind/);
+  assert.match(html, /<title>WiT Web Co\. — Your business\. Your website\. Your call\.<\/title>/i);
+  assert.match(html, /Your business/);
+  assert.match(html, /Your call/);
+  assert.match(html, /Example website direction/);
+  assert.match(html, /Fictional businesses, real possibilities/);
+  assert.match(html, /No required monthly WiT maintenance plan/);
+  assert.match(html, /source, access, documentation/);
+  assert.match(html, /Hosting, email, payments/);
+  assert.match(html, /WiT LEAD FINDER/);
+  assert.match(html, /Independent products/);
+  assert.match(html, /Hey, I’m Ethan/);
+  assert.match(html, /Simple process/);
+  assert.match(html, /Email Ethan/);
+  assert.match(html, /ejwit007@gmail\.com/);
+  assert.doesNotMatch(html, /AI Integrations|A little wit|Sculpture shape/);
   assert.match(html, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="https:\/\/witwebco\.com\/?")[^>]*>/i);
   assert.match(html, /<meta(?=[^>]*\bproperty="og:site_name")(?=[^>]*\bcontent="WiT Web Co\.")[^>]*>/i);
   assert.match(html, /<meta(?=[^>]*\bproperty="og:image")(?=[^>]*\bcontent="https:\/\/witwebco\.com\/og\.png)[^>]*>/i);
@@ -66,12 +64,12 @@ test("serves dedicated services and work pages", async () => {
 
   assert.equal(servicesResponse.status, 200);
   const servicesHtml = await servicesResponse.text();
-  assert.match(servicesHtml, /<title>Digital Services — WiT Web Co\.<\/title>/i);
+  assert.match(servicesHtml, /<title>Websites &amp; Ownership — WiT Web Co\.<\/title>/i);
   assert.match(servicesHtml, /scope, timing, and quote/i);
-  assert.match(servicesHtml, /Web Apps &amp; Custom Tools/i);
-  assert.match(servicesHtml, /AI Integrations/i);
-  assert.match(servicesHtml, /AI Integrations &amp; Automation/i);
-  assert.match(servicesHtml, /Website Care &amp; Improvements/i);
+  assert.match(servicesHtml, /Custom Tools &amp; Integrations/i);
+  assert.match(servicesHtml, /Your website/i);
+  assert.doesNotMatch(servicesHtml, /AI Integrations/i);
+  assert.match(servicesHtml, /Updates &amp; Website Care/i);
   assert.doesNotMatch(servicesHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ""), /\$[0-9]|Suggested investment|Most popular|Usually [0-9]/i);
   assert.doesNotMatch((await (await render()).text()).replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ""), /\$[0-9]|pricing|outlook\.com/i);
   assert.match(servicesHtml, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="https:\/\/witwebco\.com\/services")[^>]*>/i);
@@ -79,6 +77,8 @@ test("serves dedicated services and work pages", async () => {
   assert.equal(workResponse.status, 200);
   const workHtml = await workResponse.text();
   assert.match(workHtml, /<title>Selected Projects — WiT Web Co\.<\/title>/i);
+  assert.match(workHtml, /WiT Lead Finder/);
+  assert.match(workHtml, /https:\/\/wit-lead-finder\.ejwit004\.workers\.dev/);
   assert.match(workHtml, /Witty Games/);
   assert.match(workHtml, /Roster IQ/);
   assert.match(workHtml, /Witty’s Website/);

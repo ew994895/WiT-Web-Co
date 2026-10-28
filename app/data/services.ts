@@ -1,22 +1,6 @@
 export const services = [
-  {
-    name: "Website Design & Development",
-    description: "Clear, responsive websites that explain your business, show your work, and make it easy for customers to get in touch.",
-    tags: "New websites · Redesigns · Responsive design",
-  },
-  {
-    name: "Web Apps & Custom Tools",
-    description: "Useful digital products, dashboards, and interactive experiences shaped around the way your customers or team work.",
-    tags: "Web apps · Dashboards · Integrations",
-  },
-  {
-    name: "AI Integrations & Automation",
-    description: "Explore practical AI features such as business FAQ assistants, inquiry summaries, and draft content workflows, with clear limits and human review.",
-    tags: "Assistants · Workflow automation · Human review",
-  },
-  {
-    name: "Website Care & Improvements",
-    description: "Keep an existing website useful with content updates, usability improvements, technical SEO foundations, and ongoing care scoped to your needs.",
-    tags: "Content · Technical SEO · Maintenance",
-  },
+  { name: "Local Business Websites", description: "A distinctive, responsive home for your services, story, hours, and contact details. Clear navigation and search foundations help people find their way to you.", tags: "New websites · Redesigns · Local search foundations" },
+  { name: "Portfolios & Catalogs", description: "Give your work room to shine with galleries, browsable collections, project detail pages, and inquiries that connect customers to the work they love.", tags: "Makers · Studios · Project galleries · Inquiries" },
+  { name: "Updates & Website Care", description: "New photos, a fresh page, or a better customer journey. Request work when you need it, or agree on proactive care suited to your website.", tags: "Content changes · Improvements · Optional care" },
+  { name: "Custom Tools & Integrations", description: "When a website needs to do more, we can scope a dashboard, booking connection, payment integration, or custom workflow around the business.", tags: "Dashboards · Bookings · Established commerce services" },
 ] as const;

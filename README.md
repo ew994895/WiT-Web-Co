@@ -1,7 +1,30 @@
 # WiT Web Co.
 
-The official marketing site for WiT Web Co., an independent digital studio in
-West Chester, Pennsylvania offering websites, custom web apps, AI integrations, and website care.
+The official website for WiT Web Co., Ethan Witkowski's independent web design
+and development business in West Chester, Pennsylvania. The core offer is
+custom business-owned websites, individually scoped projects, and optional
+updates and care. No public prices or fixed packages are promised.
+
+## Ownership-led website — October 28, 2026
+
+The homepage introduces local service, portfolios/catalogs, and custom tools;
+explains client-controlled accounts, source and licensing handoff on full
+payment, third-party costs, and optional support; and links to a detailed
+approach page. An interactive example switches between three explicitly
+fictional business designs. The Work page includes WiT Lead Finder alongside
+Witty Games, Roster IQ, and the personal portfolio. AI additions are deferred.
+
+WiT Lead Finder is separately published at
+https://wit-lead-finder.ejwit004.workers.dev/ with source at
+https://github.com/ew994895/WiT-Lead-Finder. Its application files were published
+byte-for-byte from the original local project, without product changes.
+It still saves notes/statuses in the visitor's browser and relies on public
+map services; this release does not create an authenticated marketing dashboard.
+Its original README and UI still describe local use. Public hosting does not
+change its data coverage, search limits, browser-local storage, or service terms.
+
+The discarded local design direction was backed up to
+`/private/tmp/wit-web-co-discarded-direction-20261028` before replacement.
 
 ## Hosting
 
@@ -25,7 +48,7 @@ after publishing. Deployment preserves dashboard-set variables and secrets.
 ## What's included
 
 - Responsive landing page and mobile navigation
-- Three independent projects: Witty Games, Roster IQ, and Witty’s Website
+- Four independent projects: WiT Lead Finder, Witty Games, Roster IQ, and Witty’s Website
 - Work, services, founder, process, privacy, and contact sections
 - Skip navigation, keyboard-contained mobile menu, visible focus states, and reduced-motion support
 - Canonical, social preview, sitemap, robots, structured data, and branded icon metadata
@@ -104,7 +127,7 @@ not use forced package downgrades as a substitute for a tested tooling update.
 
 ## Project showcase
 
-The homepage links to `/work` without displaying individual projects. The Work
+The homepage highlights Lead Finder and Witty Games and links to `/work`. The Work
 page uses the original Witty Games favicon and game icons, Witty’s Website SVG
 logo from its GitHub repository, and Roster IQ’s existing HTML/CSS wordmark.
 The project panels link directly to their respective live sites. These are
