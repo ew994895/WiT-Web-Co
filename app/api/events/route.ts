@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     const body = await request.json() as { event?: unknown; path?: unknown };
     const event = typeof body.event === "string" ? body.event : "";
     const path = typeof body.path === "string" ? body.path.slice(0, 200) : "/";
-    if (!["/", "/services", "/work", "/privacy"].includes(path)) return new Response(null, { status: 400 });
+    if (!["/", "/services", "/work", "/about", "/contact", "/privacy"].includes(path)) return new Response(null, { status: 400 });
     if (!allowedEvents.has(event)) return new Response(null, { status: 400 });
 
     await getDatabase()
