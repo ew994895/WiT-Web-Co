@@ -31,12 +31,15 @@ test("server-renders the WiT Web Co homepage", async () => {
   assert.match(html, /<title>WiT Web Co\. — Your business\. Your website\. Your call\.<\/title>/i);
   assert.match(html, /Your business/);
   assert.match(html, /Your call/);
-  assert.match(html, /Example website direction/);
-  assert.match(html, /Fictional businesses, real possibilities/);
+  assert.match(html, /Interactive design canvas/);
+  assert.match(html, /Canvas lettering/);
+  assert.doesNotMatch(html, /fieldwork|Sample visit|fictional garden studio/);
   assert.match(html, /No required monthly WiT maintenance plan/);
   assert.match(html, /source, access, documentation/);
   assert.match(html, /Hosting, email, payments/);
-  assert.match(html, /WiT LEAD FINDER/);
+  assert.doesNotMatch(html, /class="home-project|href="\/work#(?:leads|games)"/);
+  assert.match(html, /A little proof/);
+  assert.match(html, /Explore the work/);
   assert.match(html, /Independent products/);
   assert.match(html, /Meet Ethan/);
   assert.match(html, /Simple process/);
