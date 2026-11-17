@@ -10,7 +10,7 @@ function subscribeToMotion(callback: () => void) {
 }
 const readMotionPreference = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const serverMotionPreference = () => false;
-const words = ["WiT", "YOU", "WOW"];
+const words = ["WiT", "WEB", "CO."];
 
 type Particle = { x: number; y: number; homeX: number; homeY: number; vx: number; vy: number; accent: boolean };
 
@@ -29,6 +29,9 @@ export function WebsitePreview() {
     const mask = document.createElement("canvas");
     const maskContext = mask.getContext("2d", { willReadFrequently: true });
     if (!maskContext) return;
+    const styles = getComputedStyle(canvas);
+    const particleColor = styles.getPropertyValue("--particle");
+    const accentColor = styles.getPropertyValue("--particle-accent");
     let particles: Particle[] = [];
     let width = 0;
     let height = 0;
@@ -67,17 +70,19 @@ export function WebsitePreview() {
           p.y += p.vy * step;
         }
         context.beginPath();
-        context.fillStyle = p.accent ? "#f28660" : "#d3ef9c";
+        context.fillStyle = p.accent ? accentColor : particleColor;
         context.arc(p.x, p.y, width < 400 ? 1.7 : 2, 0, Math.PI * 2);
         context.fill();
       }
       if (!still && ripple.age < 650) {
         ripple.age += elapsed;
         context.beginPath();
-        context.strokeStyle = `rgba(211,239,156,${Math.max(0, .6 - ripple.age / 1000)})`;
+        context.strokeStyle = particleColor;
+        context.globalAlpha = Math.max(0, .6 - ripple.age / 1000);
         context.lineWidth = 1;
         context.arc(ripple.x, ripple.y, 12 + ripple.age * .24, 0, Math.PI * 2);
         context.stroke();
+        context.globalAlpha = 1;
       }
       if (!still && visible && !document.hidden) frame = requestAnimationFrame(draw);
     }
@@ -103,7 +108,9 @@ export function WebsitePreview() {
       const text = words[word];
       let fontSize = width * .53;
       maskContext.font = `900 ${fontSize}px Arial, sans-serif`;
-      fontSize *= width * .84 / maskContext.measureText(text).width;
+      const sizingMetrics = maskContext.measureText(text);
+      const textHeight = sizingMetrics.actualBoundingBoxAscent + sizingMetrics.actualBoundingBoxDescent;
+      fontSize *= Math.min(width * .84 / sizingMetrics.width, height * .82 / textHeight);
       maskContext.font = `900 ${fontSize}px Arial, sans-serif`;
       maskContext.textAlign = "center";
       maskContext.textBaseline = "alphabetic";
@@ -111,7 +118,7 @@ export function WebsitePreview() {
       const baseline = height / 2 + (metrics.actualBoundingBoxAscent - metrics.actualBoundingBoxDescent) / 2;
       maskContext.fillText(text, width / 2, baseline);
       const pixels = maskContext.getImageData(0, 0, mask.width, mask.height).data;
-      const spacing = width < 400 ? 5 : 6;
+      const spacing = width < 400 ? 5 : 7;
       particles = [];
       for (let y = 0; y < mask.height; y += spacing) {
         for (let x = 0; x < mask.width; x += spacing) {
@@ -172,19 +179,47 @@ export function WebsitePreview() {
     };
   }, [word, still]);
 
-  return <section className={`wit-playground${still ? " motion-still" : ""}`} aria-label="Interactive design canvas">
-    <div className="playground-overline"><span>A LITTLE WiT GOES A LONG WAY.</span><span aria-hidden="true">↘</span></div>
-    <div className="wit-canvas-frame">
-      <div className="canvas-topline"><span><i /> IDEAS IN MOTION</span><button type="button" className="canvas-motion" aria-label={reducedMotion ? "Reduced motion enabled" : paused ? "Play canvas animation" : "Pause canvas animation"} aria-pressed={still} disabled={reducedMotion} onClick={() => setPaused(!paused)}>{still ? "▷" : "Ⅱ"}<span>{reducedMotion ? "Reduced motion" : paused ? "Play" : "Pause"}</span></button></div>
-      <div className="canvas-grid" aria-hidden="true" />
-      <span className="canvas-corner corner-one" aria-hidden="true">+</span><span className="canvas-corner corner-two" aria-hidden="true">+</span>
-      <div className="canvas-heading" aria-hidden="true">Good ideas<br /><em>don’t sit still.</em></div>
-      <span className="canvas-side-note" aria-hidden="true">INDEPENDENT BY DESIGN / WiT WEB CO.</span>
-      <canvas ref={canvasRef} className="wit-particle-canvas" role="img" aria-label={`${words[word]} lettering made of interactive particles`} aria-describedby="canvas-instructions">{words[word]} — an interactive typographic artwork.</canvas>
-      <div className="canvas-sticker" aria-hidden="true"><span>MADE TO</span><strong>stand<br /><em>out.</em></strong><span>✳</span></div>
-      <div className="canvas-bottomline"><span id="canvas-instructions">{still ? "A little quieter. Just as much character." : "Move to play. Click or tap to scatter."}</span><span aria-hidden="true">↓ ↗</span></div>
+  return (
+    <div
+      className="wit-playground"
+      id="canvas"
+      data-lettering={words[word]}
+      role="group"
+      aria-label="Interactive design canvas"
+    >
+      <div className="canvas-toolbar">
+        <div className="canvas-lettering" role="group" aria-label="Canvas lettering">
+          {words.map((name, index) => (
+            <button type="button" key={name} aria-pressed={word === index} onClick={() => setWord(index)}>
+              {name}
+            </button>
+          ))}
+        </div>
+        <button
+          type="button"
+          aria-label={reducedMotion ? "Reduced motion enabled" : paused ? "Play canvas animation" : "Pause canvas animation"}
+          disabled={reducedMotion}
+          onClick={() => setPaused((isPaused) => !isPaused)}
+        >
+          {reducedMotion ? "Motion off" : paused ? "Play" : "Pause"}
+        </button>
+      </div>
+      <canvas
+        ref={canvasRef}
+        className="wit-particle-canvas"
+        data-still={still}
+        role="img"
+        aria-label={`${words[word]} lettering made of interactive particles`}
+        aria-describedby="canvas-instructions"
+      >
+        {words[word]} in a field of dots.
+      </canvas>
+      <div className="canvas-footer">
+        <p id="canvas-instructions">{reducedMotion ? "Choose a word to change the lettering." : paused ? "Animation paused." : "Hover or tap the letters."}</p>
+        <button type="button" disabled={still} onClick={() => scatterRef.current()}>
+          Scatter letters <span aria-hidden="true">↗</span>
+        </button>
+      </div>
     </div>
-    <div className="canvas-toolbar"><div role="group" aria-label="Canvas lettering">{words.map((name, index) => <button type="button" key={name} aria-pressed={word === index} onClick={() => setWord(index)}>{name}<span aria-hidden="true">{word === index ? "●" : "○"}</span></button>)}</div><button className="canvas-scatter" type="button" disabled={still} onClick={() => scatterRef.current()}>Mix it up <span aria-hidden="true">↗</span></button></div>
-    <p className="canvas-caption">A small taste of what a custom website can feel like.</p>
-  </section>;
+  );
 }

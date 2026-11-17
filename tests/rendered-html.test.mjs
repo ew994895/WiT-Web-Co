@@ -28,30 +28,33 @@ test("server-renders the WiT Web Co homepage", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>WiT Web Co\. — Your business\. Your website\. Your call\.<\/title>/i);
-  assert.match(html, /Your business/);
-  assert.match(html, /Your call/);
-  assert.match(html, /Interactive design canvas/);
-  assert.match(html, /Canvas lettering/);
-  assert.doesNotMatch(html, /fieldwork|Sample visit|fictional garden studio/);
-  assert.match(html, /No required monthly WiT maintenance plan/);
+  assert.match(html, /<title>Web Design for Greater Philadelphia \| WiT Web Co\.<\/title>/i);
+  assert.match(html, /<h1>Web design for <span>Greater Philadelphia\.<\/span><\/h1>/);
+  assert.match(html, /Philadelphia and the surrounding suburbs/);
+  assert.match(html, /Serving Greater Philadelphia/);
+  assert.match(html, /no required monthly WiT maintenance plan/i);
   assert.match(html, /source, access, documentation/);
-  assert.match(html, /Hosting, email, payments/);
-  assert.doesNotMatch(html, /class="home-project|href="\/work#(?:leads|games)"/);
-  assert.match(html, /A little proof/);
-  assert.match(html, /Explore the work/);
-  assert.match(html, /Independent products/);
+  assert.match(html, /domain renewal, hosting, email/);
+  assert.match(html, /See my work/);
   assert.match(html, /Meet Ethan/);
-  assert.match(html, /Simple process/);
   assert.match(html, /href="\/contact"/);
   assert.match(html, /ejwit007@gmail\.com/);
-  assert.doesNotMatch(html, /AI Integrations|A little wit|Sculpture shape/);
+  assert.match(html, /<span>WiT<\/span><small>WEB CO\.<\/small>/);
+  assert.match(html, /Interactive design canvas/);
+  assert.match(html, /Canvas lettering/);
+  assert.match(html, /<button[^>]*aria-pressed="false"[^>]*>WEB<\/button>/);
+  assert.match(html, /<button[^>]*aria-pressed="false"[^>]*>CO\.<\/button>/);
+  assert.match(html, /Pause canvas animation/);
+  assert.match(html, /Scatter letters/);
+  assert.doesNotMatch(html, /AI Integrations/);
   assert.match(html, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="https:\/\/witwebco\.com\/?")[^>]*>/i);
   assert.match(html, /<meta(?=[^>]*\bproperty="og:site_name")(?=[^>]*\bcontent="WiT Web Co\.")[^>]*>/i);
   assert.match(html, /<meta(?=[^>]*\bproperty="og:image")(?=[^>]*\bcontent="https:\/\/witwebco\.com\/og\.png)[^>]*>/i);
   assert.match(html, /<meta(?=[^>]*\bname="twitter:card")(?=[^>]*\bcontent="summary_large_image")[^>]*>/i);
   assert.match(html, /application\/ld\+json/i);
-  assert.match(html, /ProfessionalService/);
+  const business = JSON.parse(html.match(/<script type="application\/ld\+json">([^<]+)<\/script>/)?.[1] ?? "{}");
+  assert.equal(business["@type"], "ProfessionalService");
+  assert.deepEqual(business.areaServed, { "@type": "Place", name: "Greater Philadelphia" });
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|react-loading-skeleton/i);
 
   assert.equal(response.headers.get("x-content-type-options"), "nosniff");
@@ -67,10 +70,10 @@ test("serves dedicated services and work pages", async () => {
 
   assert.equal(servicesResponse.status, 200);
   const servicesHtml = await servicesResponse.text();
-  assert.match(servicesHtml, /<title>Websites &amp; Ownership — WiT Web Co\.<\/title>/i);
+  assert.match(servicesHtml, /<title>Web Design Services in Greater Philadelphia \| WiT Web Co\.<\/title>/i);
   assert.match(servicesHtml, /scope, timing, and quote/i);
   assert.match(servicesHtml, /Custom Tools &amp; Integrations/i);
-  assert.match(servicesHtml, /Your website/i);
+  assert.match(servicesHtml, /From first call to handoff/i);
   assert.doesNotMatch(servicesHtml, /AI Integrations/i);
   assert.match(servicesHtml, /Updates &amp; Website Care/i);
   assert.doesNotMatch(servicesHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ""), /\$[0-9]|Suggested investment|Most popular|Usually [0-9]/i);
@@ -79,7 +82,7 @@ test("serves dedicated services and work pages", async () => {
 
   assert.equal(workResponse.status, 200);
   const workHtml = await workResponse.text();
-  assert.match(workHtml, /<title>Selected Projects — WiT Web Co\.<\/title>/i);
+  assert.match(workHtml, /<title>Selected Projects \| WiT Web Co\.<\/title>/i);
   assert.match(workHtml, /WiT Lead Finder/);
   assert.match(workHtml, /https:\/\/wit-lead-finder\.ejwit004\.workers\.dev/);
   assert.match(workHtml, /Witty Games/);
@@ -87,16 +90,15 @@ test("serves dedicated services and work pages", async () => {
   assert.match(workHtml, /Witty’s Website/);
 
   assert.match(workHtml, /Personal products and experiments/i);
-  assert.match(workHtml, /Independent project/i);
   assert.match(workHtml, /https:\/\/witty-games\.ejwit004\.workers\.dev/i);
   assert.match(workHtml, /https:\/\/roster-iq\.ejwit004\.workers\.dev/i);
   assert.match(workHtml, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="https:\/\/witwebco\.com\/work")[^>]*>/i);
 });
 
-test("About and Let's Talk have standalone pages and direct navigation", async () => {
+test("About and Contact have standalone pages and direct navigation", async () => {
   for (const [path, title, content] of [
-    ["/about", "About Ethan — WiT Web Co.", "Hey, I’m Ethan"],
-    ["/contact", "Let’s Talk — WiT Web Co.", "Email Ethan"],
+    ["/about", "About Ethan Witkowski | WiT Web Co.", "I’m Ethan Witkowski."],
+    ["/contact", "Contact | WiT Web Co.", "Email Ethan"],
   ]) {
     const response = await render(path);
     assert.equal(response.status, 200);
@@ -156,6 +158,16 @@ test("disabled inquiry endpoint never accepts or stores a submission", async () 
   }), { ASSETS: { fetch: async () => new Response(null, { status: 404 }) } }, { waitUntil() {}, passThroughOnException() {} });
   assert.equal(response.status, 503);
   assert.deepEqual(await response.json(), { ok: false, message: "Please email ejwit007@gmail.com to discuss your project." });
+});
+
+test("public pages use Greater Philadelphia as the service area", async () => {
+  for (const path of ["/", "/about", "/services", "/work", "/contact", "/privacy"]) {
+    const response = await render(path);
+    assert.equal(response.status, 200, path);
+    const html = await response.text();
+    assert.match(html, /Serving Greater Philadelphia/, path);
+    assert.doesNotMatch(html, /west[\s-]+chester/i, path);
+  }
 });
 
 test("public pages contain only the current showcase and direct contact", async () => {

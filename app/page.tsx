@@ -2,38 +2,125 @@ import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import { WebsitePreview } from "./components/WebsitePreview";
 
-const steps = [
-  ["01", "Tell me your story.", "We look at your business, your current website, and what would make life easier for you and your customers."],
-  ["02", "Agree on the details.", "You get a clear scope, project quote, payment milestones, and a breakdown of any ongoing third-party costs."],
-  ["03", "Watch it take shape.", "I design and build. You see the progress, share feedback, and review the working website before launch."],
-  ["04", "Make yourself at home.", "We launch, test the essentials, and hand over your access and documentation. Need help later? You know who to call."],
+const offerings = [
+  {
+    title: "Websites & redesigns",
+    description: "Show people what you do, where you work, and how to get in touch. Built for customers looking you up on their phones.",
+  },
+  {
+    title: "Portfolios & catalogs",
+    description: "Give customers a place to browse your projects or products and ask about a piece, a service, or a custom order.",
+  },
+  {
+    title: "Tools & updates",
+    description: "Add online booking or payments, pick up where an old site left off, or build a tool for a job you do every day.",
+  },
+];
+
+const questions = [
+  {
+    question: "How much will my website cost?",
+    answer: "I quote each project individually. We agree on the pages, features, timeline, and payment milestones before work starts.",
+  },
+  {
+    question: "Can you work with my existing site?",
+    answer: "Yes. I’ll look at what you have first. Updating your current site or keeping the tools you already use may be the best fit.",
+  },
+  {
+    question: "What ongoing costs should I expect?",
+    answer: "Your proposal lists expected costs for things like domain renewal, hosting, email, or payment processing. Simple sites have no required monthly WiT maintenance plan. We agree on a care plan for more complex sites.",
+  },
+  {
+    question: "Can someone else maintain my site later?",
+    answer: "Yes. Once the project is paid in full, I hand over the source, access, documentation, and licensing details so you or another developer can run it.",
+  },
 ];
 
 export default function Home() {
-  return <>
-    <a className="skip-link" href="#main-content">Skip to main content</a>
-    <SiteHeader />
-    <main id="main-content">
-      <section className="ownership-hero section-shell" id="top" aria-labelledby="hero-title">
-        <div className="hero-topline"><p className="eyebrow"><span /> LOCAL ROOTS. INDEPENDENT WEBSITES.</p><span>WEST CHESTER, PENNSYLVANIA</span></div>
-        <div className="ownership-hero-grid">
-          <div className="hero-copy"><h1 id="hero-title">Your business.<br />Your <em>website.</em><br />Your call<span className="orange-dot">.</span></h1><p className="hero-intro">You built something worth finding.<br />Let’s give it a website that feels like you—and belongs to you.</p><div className="hero-actions"><a className="button button-dark" href="/contact" data-track="cta_start_project">Let’s talk about your website <span aria-hidden="true">↗</span></a><a className="text-link" href="#ownership">What ownership means <span aria-hidden="true">↓</span></a></div><p className="hero-footnote">Built by Ethan. Quoted upfront. Help when you need it.</p></div>
+  return (
+    <>
+      <a className="skip-link" href="#main-content">Skip to main content</a>
+      <SiteHeader />
+      <main id="main-content">
+        <section className="home-hero section-shell" id="top">
+          <div className="hero-copy">
+            <h1>Web design for <span>Greater Philadelphia.</span></h1>
+            <p className="hero-intro">I’m Ethan Witkowski. I design and build websites for small businesses, from the shops on your block to the contractors who work across the region.</p>
+            <div className="actions">
+              <a className="button" href="/contact" data-track="cta_start_project">
+                Discuss your website <span aria-hidden="true">↗</span>
+              </a>
+              <a className="text-link" href="/work" data-track="view_work">
+                See my work <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+
           <WebsitePreview />
-        </div>
-        <div className="hero-bottom"><span>DESIGNED FOR YOUR BUSINESS. BUILT FOR YOUR NEXT CHAPTER.</span><a href="#possibilities">A FEW POSSIBILITIES ↓</a></div>
-      </section>
-      <div className="belief-strip"><span>Custom design.</span><i aria-hidden="true">✳</i><span>Real ownership.</span><i aria-hidden="true">✳</i><span>One local developer.</span><i aria-hidden="true">✳</i><span>Your next chapter.</span></div>
-      <section className="possibilities-section section-shell" id="possibilities" aria-labelledby="possibilities-title">
-        <div className="section-heading"><div><p className="section-kicker">01 / A WEBSITE WITH A JOB TO DO</p><h2 id="possibilities-title">More than a link.<br /><em>A place of your own.</em></h2></div><p>Help people find you, see what makes you different, and take the next step. We build around what your business actually needs.</p></div>
-        <div className="possibility-grid"><article><span className="possibility-symbol" aria-hidden="true">↗</span><span className="small-label">FOR THE PEOPLE WHO DO</span><h3>Get found.<br />Get in touch.</h3><p>A clear home for your services, hours, location, and customer questions. Built to work beautifully on a phone.</p><span className="possibility-fit">Trades · Local services · Community businesses</span></article><article><span className="possibility-symbol" aria-hidden="true">✳</span><span className="small-label">FOR THE PEOPLE WHO MAKE</span><h3>Let your work<br />do the talking.</h3><p>A browsable portfolio or catalog that gives every project its moment—and helps customers ask for something of their own.</p><span className="possibility-fit">Makers · Artists · Studios · Custom work</span></article><article><span className="possibility-symbol" aria-hidden="true">⌘</span><span className="small-label">FOR THE NEXT GOOD IDEA</span><h3>Make it work<br />your way.</h3><p>Need bookings, payments, a dashboard, or a custom tool? We scope the right solution and use established services where they fit.</p><span className="possibility-fit">Useful tools · Integrations · Individually scoped</span></article></div>
-        <a className="text-link section-end-link" href="/services">Explore what we can build <span aria-hidden="true">↗</span></a>
-      </section>
-      <section className="ownership-section" id="ownership" aria-labelledby="ownership-title"><div className="section-shell ownership-layout"><div><p className="section-kicker light">02 / THE WAY WiT WORKS</p><h2 id="ownership-title">Built for you.<br />Handed to you.<br /><em>Actually yours.</em></h2><p className="ownership-intro">Pay for the design and build. Keep control of the result. Choose when you want my help again.</p><a className="text-link text-link-light" href="/services#ownership-details">The details behind the promise ↗</a></div><div className="ownership-ledger"><div className="ledger-top"><span>YOUR WEBSITE / YOUR CONTROL</span><span aria-hidden="true">↗</span></div><article><span>01</span><div><h3>Your accounts. Your access.</h3><p>Your domain and key service accounts stay in your control, with access for me to do the work.</p></div></article><article><span>02</span><div><h3>A website you can take with you.</h3><p>On full payment, get the source, access, documentation, and rights needed to run or move the finished site.</p></div></article><article><span>03</span><div><h3>Updates on your terms.</h3><p>No required monthly WiT maintenance plan for a simple website. Request a change, approve the quote, and I’ll schedule it.</p></div></article><div className="ledger-note">Domains renew. Hosting, email, payments, and some integrations may cost extra. We make those costs clear before work starts. More complex sites need an agreed care plan.</div></div></div></section>
-      <section className="home-work-section section-shell" aria-labelledby="home-work-title"><div className="section-heading"><div><p className="section-kicker">03 / IDEAS YOU CAN ACTUALLY OPEN</p><h2 id="home-work-title">A little proof.<br /><em>A lot of possibility.</em></h2></div><p>Independent products built by Ethan. Try them, explore them, and imagine what a useful website could do for your business.</p></div><div className="work-caption"><p>Our own products and experiments. Your business gets its own story.</p><a className="text-link" href="/work" data-track="view_work">Explore the work ↗</a></div></section>
-      <section className="home-about-link section-shell" id="about" aria-labelledby="meet-ethan-title"><div><p className="section-kicker">04 / MEET YOUR WEB PERSON</p><h2 id="meet-ethan-title">Local roots.<br /><em>One direct connection.</em></h2></div><div><p>I’m Ethan, an independent developer in West Chester. You work directly with the person designing, building, and looking after your website.</p><a className="text-link" href="/about">Meet Ethan ↗</a></div></section>
-      <section className="process-section section-shell" aria-labelledby="process-title"><div className="section-heading"><div><p className="section-kicker">05 / FROM FIRST HELLO TO YOUR OWN URL</p><h2 id="process-title">Simple process.<br /><em>Personal all the way.</em></h2></div><p>A clear plan, visible progress, and a handoff that gives you the keys.</p></div><div className="process-grid">{steps.map(([number, title, description]) => <article key={number}><span>{number} /</span><h3>{title}</h3><p>{description}</p></article>)}</div></section>
-      <section className="faq-section section-shell" aria-labelledby="faq-title"><div><p className="section-kicker">A FEW FAIR QUESTIONS</p><h2 id="faq-title">Good to know.<br /><em>Before we say hello.</em></h2></div><div className="faq-list"><details><summary>Do I have to leave my existing platform?<span aria-hidden="true">+</span></summary><p>No. We review what works, what doesn’t, and what a move would involve. If your existing platform is the right fit—especially for a busy online store—we can work with it.</p></details><details><summary>Will I still have ongoing costs?<span aria-hidden="true">+</span></summary><p>Possibly. Domain renewals, hosting, business email, payment processing, and licensed tools can have recurring charges. Your proposal explains the expected costs and who bills them. There is no blanket promise of free hosting forever.</p></details><details><summary>What if I need an update later?<span aria-hidden="true">+</span></summary><p>Send me the request. I’ll confirm the scope and cost for your approval before scheduling the work. Optional proactive care is available; sites with commerce or other complex systems need a suitable maintenance arrangement.</p></details><details><summary>How much will my website cost?<span aria-hidden="true">+</span></summary><p>Every project is scoped and quoted individually. We discuss the pages, features, content, timeline, and handoff before agreeing on a project price and payment milestones.</p></details><details><summary>Can another developer look after it?<span aria-hidden="true">+</span></summary><p>Yes. The handoff includes the access, source, documentation, and licenses needed to operate the finished site. Your agreement explains ownership of custom work, reusable components, and third-party materials.</p></details></div></section>
-      <section className="page-cta section-shell" id="contact" aria-labelledby="contact-title"><p className="section-kicker">YOUR NEXT CHAPTER STARTS WITH A HELLO</p><h2 id="contact-title">A business worth finding.<br /><em>A website worth making.</em></h2><a className="button button-dark" href="/contact" data-track="cta_start_project">Let’s talk about your website ↗</a></section>
-    </main><SiteFooter />
-  </>;
+        </section>
+
+        <section className="service-band" aria-labelledby="service-area-title">
+          <div className="section-shell service-band-inner">
+            <h2 id="service-area-title">Where I work</h2>
+            <p>Philadelphia and the surrounding suburbs.</p>
+          </div>
+        </section>
+
+        <section className="section-shell section-block" id="possibilities" aria-labelledby="home-services-title">
+          <div className="section-heading">
+            <h2 id="home-services-title">What I build</h2>
+            <a className="text-link" href="/services">View services <span aria-hidden="true">↗</span></a>
+          </div>
+          <div className="offerings">
+            {offerings.map(({ title, description }) => (
+              <article key={title}>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="ownership-band" id="ownership" aria-labelledby="ownership-title">
+          <div className="section-shell split-section">
+            <h2 id="ownership-title">Your website stays yours.</h2>
+            <div>
+              <p>You keep control of your domain and accounts. After final payment, I hand over the project files and show you how to run the site. You can come back to me for updates whenever you need them.</p>
+              <a className="text-link" href="/services#ownership-details">How the handoff works <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </section>
+
+        <section className="section-shell split-section section-block" id="about" aria-labelledby="about-title">
+          <h2 id="about-title">Work directly with me.</h2>
+          <div>
+            <p>I handle the design, code, and launch. If you have a question about the project or want to change something, you’ll talk to the person who built it.</p>
+            <a className="text-link" href="/about">Meet Ethan <span aria-hidden="true">↗</span></a>
+          </div>
+        </section>
+
+        <section className="section-shell split-section faq-section" aria-labelledby="faq-title">
+          <h2 id="faq-title">Common questions</h2>
+          <div className="faq-list">
+            {questions.map(({ question, answer }) => (
+              <details key={question}>
+                <summary>{question}<span aria-hidden="true" /></summary>
+                <p>{answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section className="closing-band" id="contact" aria-labelledby="contact-title">
+          <div className="section-shell closing-content">
+            <h2 id="contact-title">Have a site in mind?</h2>
+            <a className="button button-light" href="/contact" data-track="cta_start_project">
+              Tell me about it <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </section>
+      </main>
+      <SiteFooter />
+    </>
+  );
 }

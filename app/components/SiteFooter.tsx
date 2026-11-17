@@ -3,18 +3,19 @@ import { PUBLIC_CONTACT_EMAIL } from "../lib/site";
 
 export function SiteFooter() {
   return (
-    <footer>
-      <a className="wordmark footer-mark" href="/" aria-label="WiT Web Co home">
-        <span>WiT</span><small>WEB CO.</small>
-      </a>
-      <p>Built locally. Owned by you. · West Chester, PA</p>
-      <div className="footer-links">
-        <span>© 2026 WiT Web Co.</span>
-        <a href={`mailto:${PUBLIC_CONTACT_EMAIL}`} data-track="email_click">Email</a>
-        <a href="/about">About</a>
-        <a href="/contact">Let’s talk</a>
-        <a href="/privacy">Privacy</a>
-        <a href="/#top">Back to top ↑</a>
+    <footer className="site-footer">
+      <div className="section-shell footer-inner">
+        <div>
+          <a className="wordmark" href="/" aria-label="WiT Web Co home">
+            <span>WiT</span>
+            <small>WEB CO.</small>
+          </a>
+          <p>Serving Greater Philadelphia</p>
+        </div>
+        <div className="footer-links">
+          <a href={`mailto:${PUBLIC_CONTACT_EMAIL}`} data-track="email_click">{PUBLIC_CONTACT_EMAIL}</a>
+          <a href="/privacy">Privacy</a>
+        </div>
       </div>
     </footer>
   );

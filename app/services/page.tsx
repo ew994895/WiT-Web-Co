@@ -1,21 +1,81 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
-import type { Metadata } from "next";
-import { services } from "../data/services";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
-export const metadata: Metadata = {
-  title: "Websites & Ownership — WiT Web Co.",
-  description: "Custom websites for local businesses, portfolios, catalogs, and help when you need it. Clear scope, real ownership, and individual project quotes.",
-  alternates: { canonical: "/services" },
-  openGraph: { title: "Websites & Ownership — WiT Web Co.", description: "Built locally. Owned by you. Supported on your terms.", url: "/services" },
-  twitter: { card: "summary_large_image", title: "Websites & Ownership — WiT Web Co.", description: "Built locally. Owned by you. Supported on your terms." },
-};
+import { pageMetadata } from "../lib/metadata";
+import { services } from "../data/services";
+
+const title = "Web Design Services in Greater Philadelphia | WiT Web Co.";
+const description = "Small business websites, redesigns, portfolios, and custom integrations in Greater Philadelphia. Each project is scoped and quoted individually.";
+
+export const metadata = pageMetadata("/services", title, description);
+
+const projectSteps = [
+  {
+    title: "Scope and quote",
+    description: "We talk through your business, your goals, and any site you already have. Your proposal covers pages, features, who supplies content, revisions, timing, payment milestones, and launch support.",
+  },
+  {
+    title: "Design and build",
+    description: "You review the design and try the working site before it goes live. Your domain and service accounts stay under your control, with access for me to do the work.",
+  },
+  {
+    title: "Launch and handoff",
+    description: "I check the site before launch. After final payment, you get the source, account access, deployment instructions, and licensing details a future developer would need.",
+  },
+  {
+    title: "After launch",
+    description: "Send me a change request whenever you need one. I’ll quote the work before scheduling it. Simple sites have no required monthly WiT maintenance plan. We agree on suitable care for stores, databases, and other complex sites.",
+  },
+];
+
 export default function ServicesPage() {
-  return <><a className="skip-link" href="#main-content">Skip to main content</a><SiteHeader /><main id="main-content">
-    <section className="inner-hero section-shell" id="top"><p className="eyebrow"><span /> BUILT AROUND YOUR BUSINESS</p><div className="inner-hero-grid"><h1>A place to grow.<br /><em>On your terms.</em></h1><div><p>A clear website. A useful catalog. A tool that makes the day easier. Let’s build what your business needs, with the ownership and support to match.</p><a className="button button-dark" href="/contact">Talk it through ↗</a></div></div></section>
-    <section className="services-section" aria-labelledby="services-title"><div className="section-shell"><div className="section-heading"><div><p className="section-kicker light">WHAT WE CAN BUILD</p><h2 id="services-title">Start with your business.<br /><em>Build from there.</em></h2></div><p>Scope, timing, and quote are individual to your project. These are starting points for a conversation.</p></div><div className="service-list">{services.map((service, index) => <article className="service-item" key={service.name}><span>0{index + 1}</span><h3>{service.name}</h3><div><p>{service.description}</p><small>{service.tags}</small></div></article>)}</div></div></section>
-    <section className="ownership-details section-shell" id="ownership-details" aria-labelledby="ownership-details-title"><div className="section-heading"><div><p className="section-kicker">THE DETAILS BEHIND THE PROMISE</p><h2 id="ownership-details-title">Your website.<br /><em>Keys included.</em></h2></div><p>Ownership is part of the setup, the agreement, and the handoff.</p></div><div className="detail-grid"><article><span>01 / THE BUILD</span><h3>A project, clearly agreed.</h3><p>Your proposal sets out pages, features, content responsibilities, revision rounds, timing, payment milestones, launch checks, and the period for fixing launch-related defects. Additional work gets a separate estimate.</p></article><article><span>02 / THE ACCOUNTS</span><h3>You stay in control.</h3><p>Your domain, hosting, business email, analytics, and payment accounts belong under your control. I receive appropriate access to do the work. We document the services and who pays for them.</p></article><article><span>03 / THE HANDOFF</span><h3>Keep it. Run it. Move it.</h3><p>On full payment, you receive your project source, deployment information, account access, and practical instructions. The agreement explains custom-work ownership and the licenses for reusable components and third-party assets, so another developer can maintain the finished site.</p></article><article><span>04 / WHAT COMES NEXT</span><h3>Help when you need it.</h3><p>Simple websites do not require a monthly WiT maintenance subscription. Send a change request, approve the scope and quote, and I schedule it. Optional care can cover regular reviews and updates; response times and support boundaries are agreed in writing.</p></article></div><div className="cost-note"><span aria-hidden="true">↳</span><div><h3>Independent doesn’t mean every service is free.</h3><p>Domain renewals, hosting, email, payment processing, and some tools or licenses can have ongoing fees. We disclose expected costs upfront. Commerce, databases, and other dynamic systems need suitable updates, backups, security, and support arrangements.</p></div></div></section>
-    <section className="platform-note section-shell"><p className="section-kicker">THE RIGHT TOOL FOR THE BUSINESS</p><h2>A fresh start.<br /><em>Or a smarter next step.</em></h2><p>You may not need to replace everything. We review your current website and choose what makes sense. For stores, payments, and gift cards, established commerce services often remain the right fit. Migration, content editing, and any integrations are scoped before work begins.</p></section>
-    <section className="page-cta section-shell"><p className="section-kicker">LET’S FIND YOUR NEXT STEP</p><h2>Your business has a story.<br /><em>Let’s give it a home.</em></h2><a className="button button-dark" href="/contact">Introduce your business ↗</a></section>
-  </main><SiteFooter /></>;
+  return (
+    <>
+      <a className="skip-link" href="#main-content">Skip to main content</a>
+      <SiteHeader />
+      <main id="main-content">
+        <section className="section-shell page-intro" id="top">
+          <p className="eyebrow">Greater Philadelphia</p>
+          <h1>Web design services</h1>
+          <p>I build new sites and improve existing ones for small businesses. We agree on the scope, timing, and quote before work starts.</p>
+        </section>
+
+        <section className="section-shell split-section section-block ruled-top" aria-labelledby="services-title">
+          <h2 id="services-title">What I build</h2>
+          <div className="text-list">
+            {services.map(({ name, description }) => (
+              <article key={name}>
+                <h3>{name}</h3>
+                <p>{description}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="ownership-band" id="ownership-details" aria-labelledby="ownership-details-title">
+          <div className="section-shell split-section">
+            <div>
+              <h2 id="ownership-details-title">From first call to handoff</h2>
+              <p>Domain renewal, hosting, business email, and other services may have ongoing fees. Your proposal lists the expected costs and who bills them.</p>
+            </div>
+            <div className="text-list">
+              {projectSteps.map(({ title, description }) => (
+                <article key={title}>
+                  <h3>{title}</h3>
+                  <p>{description}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="closing-band" aria-labelledby="services-contact-title">
+          <div className="section-shell closing-content">
+            <h2 id="services-contact-title">Tell me what you need.</h2>
+            <a className="button button-light" href="/contact" data-track="cta_start_project">Start a project <span aria-hidden="true">↗</span></a>
+          </div>
+        </section>
+      </main>
+      <SiteFooter />
+    </>
+  );
 }

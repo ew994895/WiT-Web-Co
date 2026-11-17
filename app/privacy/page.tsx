@@ -1,15 +1,13 @@
-import type { Metadata } from "next";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
+import { pageMetadata } from "../lib/metadata";
 import { PUBLIC_CONTACT_EMAIL } from "../lib/site";
 
-export const metadata: Metadata = {
-  title: "Privacy — WiT Web Co.",
-  description: "How WiT Web Co. handles website analytics and project inquiry information.",
-  alternates: { canonical: "/privacy" },
-  openGraph: { title: "Privacy — WiT Web Co.", description: "How WiT Web Co. handles website analytics and project inquiry information." },
-  twitter: { card: "summary_large_image", title: "Privacy — WiT Web Co.", description: "How WiT Web Co. handles website analytics and project inquiry information." },
-};
+export const metadata = pageMetadata(
+  "/privacy",
+  "Privacy — WiT Web Co.",
+  "How WiT Web Co. handles website analytics and project inquiry information.",
+);
 
 export default function PrivacyPage() {
   return (
@@ -17,8 +15,7 @@ export default function PrivacyPage() {
       <a className="skip-link" href="#main-content">Skip to main content</a>
       <SiteHeader />
       <main id="main-content" className="legal-page section-shell">
-        <p className="eyebrow"><span /> Privacy</p>
-        <h1>Clear, simple,<br /><em>respectful.</em></h1>
+        <h1>Privacy</h1>
         <p className="legal-updated">Last updated October 16, 2026</p>
         <div className="legal-content">
           <section>

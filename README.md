@@ -1,7 +1,8 @@
 # WiT Web Co.
 
 The official website for WiT Web Co., Ethan Witkowski's independent web design
-and development business in West Chester, Pennsylvania. The core offer is
+and development business serving small businesses across Greater Philadelphia.
+The core offer is
 custom business-owned websites, individually scoped projects, and optional
 updates and care. No public prices or fixed packages are promised.
 
@@ -57,7 +58,7 @@ after publishing. Deployment preserves dashboard-set variables and secrets.
 - Responsive landing page and mobile navigation
 - Four independent projects: WiT Lead Finder, Witty Games, Roster IQ, and Witty’s Website
 - Work, services, founder, process, privacy, and contact sections
-- Skip navigation, keyboard-contained mobile menu, visible focus states, and reduced-motion support
+- Skip navigation, keyboard-accessible mobile menu, and visible focus states
 - Canonical, social preview, sitemap, robots, structured data, and branded icon metadata
 - Direct email contact and privacy-friendly event measurement; legacy inquiry storage retained with collection disabled
 - Response security headers, a custom not-found experience, and automated production smoke tests
@@ -134,8 +135,9 @@ not use forced package downgrades as a substitute for a tested tooling update.
 
 ## Project showcase
 
-The homepage highlights Lead Finder and Witty Games and links to `/work`. The Work
-page uses the original Witty Games favicon and game icons, Witty’s Website SVG
-logo from its GitHub repository, and Roster IQ’s existing HTML/CSS wordmark.
-The project panels link directly to their respective live sites. These are
-personal projects, not claimed client commissions.
+The homepage links to four independent products on the Work page. The gallery
+uses the original Witty Games and Witty’s Website marks and links to each live
+project.
+
+The homepage includes an interactive WiT Web Co. lettering canvas with mouse,
+touch, and keyboard controls. It respects reduced-motion preferences.

@@ -1,17 +1,15 @@
 export function ContactCard({ contactEmail }: { contactEmail: string }) {
   return (
     <div className="contact-card">
-      <p className="section-kicker">Start with an email</p>
-      <h2>A rough idea is enough.</h2>
-      <p>Tell me about your business and what you’d like to improve. I’ll reply with questions and a practical next step.</p>
-      <a className="button button-dark" href={`mailto:${contactEmail}?subject=Let%E2%80%99s%20talk%20about%20a%20project`} data-track="email_click">Email Ethan <span aria-hidden="true">↗</span></a>
-      <a className="contact-address" href={`mailto:${contactEmail}`} data-track="email_click">{contactEmail}</a>
-      <p className="contact-helper">Opens your email app. You can also copy the address into your preferred inbox.</p>
-      <div className="contact-checklist">
-        <h3>Helpful details to include</h3>
-        <ul><li>Your business and current website, if you have one</li><li>What you want to build or improve</li><li>Your ideal timing and any constraints</li></ul>
-      </div>
-      <p className="contact-helper">Every project is scoped and quoted individually. <a href="/privacy">How your information is handled</a>.</p>
+      <h2>Email Ethan</h2>
+      <p><a className="text-link" href={`mailto:${contactEmail}?subject=Website%20project`} data-track="email_click">{contactEmail}</a></p>
+      <h3>Helpful details to include</h3>
+      <ul>
+        <li>Your business name and location</li>
+        <li>Your current website, if you have one</li>
+        <li>What you’d like to build or improve and when you need it</li>
+      </ul>
+      <p>I’ll follow up with questions and quote the project individually once we’ve discussed the scope.</p>
     </div>
   );
 }

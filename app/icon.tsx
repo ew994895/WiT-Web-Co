@@ -9,8 +9,8 @@ export default function Icon() {
       <div
         style={{
           alignItems: "center",
-          background: "#172b23",
-          color: "#f3efe4",
+          background: "#10213a",
+          color: "#f8fbff",
           display: "flex",
           fontFamily: "Arial, sans-serif",
           fontSize: 35,
@@ -21,7 +21,7 @@ export default function Icon() {
           width: "100%",
         }}
       >
-        W<span style={{ color: "#ff5a36", fontFamily: "Georgia, serif" }}>i</span>T
+        W<span style={{ color: "#77adf5", fontFamily: "Georgia, serif" }}>i</span>T
       </div>
     ),
     size,

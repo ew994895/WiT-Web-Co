@@ -6,13 +6,12 @@ export default function NotFound() {
   return (
     <>
       <SiteHeader />
-      <main className="not-found section-shell">
-        <p className="section-kicker">404 · Wrong turn</p>
-        <h1>This page took<br /><em>the night off.</em></h1>
-        <p>The link may have moved, but the good work is still here.</p>
-        <div className="hero-actions">
-          <a className="button button-dark" href="/">Back home <span aria-hidden="true">↗</span></a>
-          <a className="text-link" href="/work">Explore work <span aria-hidden="true">↗</span></a>
+      <main className="page-intro section-shell">
+        <p className="eyebrow">Error 404</p>
+        <h1>Page not found</h1>
+        <div className="actions">
+          <a className="button" href="/">Back home <span aria-hidden="true">↗</span></a>
+          <a className="text-link" href="/services">View services <span aria-hidden="true">↗</span></a>
         </div>
       </main>
       <SiteFooter />

@@ -1,6 +1,18 @@
 export const services = [
-  { name: "Local Business Websites", description: "A distinctive, responsive home for your services, story, hours, and contact details. Clear navigation and search foundations help people find their way to you.", tags: "New websites · Redesigns · Local search foundations" },
-  { name: "Portfolios & Catalogs", description: "Give your work room to shine with galleries, browsable collections, project detail pages, and inquiries that connect customers to the work they love.", tags: "Makers · Studios · Project galleries · Inquiries" },
-  { name: "Updates & Website Care", description: "New photos, a fresh page, or a better customer journey. Request work when you need it, or agree on proactive care suited to your website.", tags: "Content changes · Improvements · Optional care" },
-  { name: "Custom Tools & Integrations", description: "When a website needs to do more, we can scope a dashboard, booking connection, payment integration, or custom workflow around the business.", tags: "Dashboards · Bookings · Established commerce services" },
+  {
+    name: "Small Business Websites",
+    description: "A new site or redesign that makes your services, hours, and contact details easy to find. I set up clear navigation, mobile layouts, and the basics for local search.",
+  },
+  {
+    name: "Portfolios & Catalogs",
+    description: "Galleries, catalogs, and project pages that let customers browse your work and ask about a product or a commission.",
+  },
+  {
+    name: "Updates & Website Care",
+    description: "Replace old photos, add pages, or fix a frustrating part of your current site. I can also quote regular updates and reviews if you need them.",
+  },
+  {
+    name: "Custom Tools & Integrations",
+    description: "Connect booking, payments, or an existing store. I can also build dashboards and tools for work your team currently does by hand.",
+  },
 ] as const;
