@@ -25,6 +25,11 @@ interface ExecutionContext {
 
 function withSecurityHeaders(request: Request, response: Response) {
   const headers = new Headers(response.headers);
+  // Keep pilot policy pages accessible to reviewers but out of search results.
+  // Do not disallow crawling in robots.txt: crawlers must read this directive.
+  if (/^\/sms-(terms|privacy)\/?$/.test(new URL(request.url).pathname)) {
+    headers.set("x-robots-tag", "noindex, nofollow, noarchive");
+  }
   headers.set("referrer-policy", "strict-origin-when-cross-origin");
   headers.set("x-content-type-options", "nosniff");
   headers.set("x-frame-options", "DENY");

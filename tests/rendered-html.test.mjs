@@ -150,6 +150,33 @@ test("serves a clear privacy notice", async () => {
   assert.match(html, /ejwit007@gmail\.com/i);
 });
 
+test("pilot policies are public, unlisted, and excluded from search indexing", async () => {
+  for (const [path, title, otherPath] of [
+    ["/sms-terms", "Shift Text Pilot: SMS Terms", "/sms-privacy"],
+    ["/sms-privacy", "Shift Text Pilot: Privacy Policy", "/sms-terms"],
+  ]) {
+    const response = await render(path);
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get("x-robots-tag"), "noindex, nofollow, noarchive");
+    const html = await response.text();
+    assert.ok(html.includes(`<h1>${title}</h1>`));
+    assert.match(html, /<meta(?=[^>]*name="robots")(?=[^>]*content="[^"]*noindex)[^>]*>/i);
+    assert.match(html, /mailto:ejwit007@gmail\.com/);
+    assert.ok(html.includes(`href="${otherPath}"`));
+  }
+  const terms = await (await render("/sms-terms")).text();
+  assert.match(terms, /https:\/\/tally\.so\/r\/PR9xr5/);
+  assert.match(terms, /Message and data rates may apply/);
+  assert.match(terms, /Reply STOP/);
+  assert.match(terms, /Reply HELP/);
+  for (const path of ["/", "/services", "/work", "/about", "/contact", "/privacy"]) {
+    const html = await (await render(path)).text();
+    assert.doesNotMatch(html, /href="\/sms-(terms|privacy)/);
+  }
+  const sitemap = await (await render("/sitemap.xml")).text();
+  assert.doesNotMatch(sitemap, /\/sms-(terms|privacy)/);
+});
+
 // Collection must stay closed while the public site directs visitors to email.
 test("disabled inquiry endpoint never accepts or stores a submission", async () => {
   const { default: worker } = await import("../dist/server/index.js");
