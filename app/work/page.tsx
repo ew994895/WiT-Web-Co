@@ -4,7 +4,7 @@ import { SiteHeader } from "../components/SiteHeader";
 import { pageMetadata } from "../lib/metadata";
 
 const title = "Selected Projects | WiT Web Co.";
-const description = "Explore independent projects built by Ethan Witkowski, the web designer and developer behind WiT Web Co.";
+const description = "Explore selected websites and personal projects from Ethan Witkowski, the designer and developer behind WiT Web Co.";
 
 export const metadata = pageMetadata("/work", title, description);
 
@@ -16,9 +16,9 @@ export default function WorkPage() {
       <main id="main-content">
         <section className="section-shell page-intro" id="top">
           <h1>Selected work</h1>
-          <p>Personal products and experiments I designed and built. Each one is live and ready to try.</p>
+          <p>A selection of business websites, personal products, and experiments. Open a project to take a look.</p>
         </section>
-        <section className="section-shell project-section" aria-label="Independent projects">
+        <section className="section-shell project-section" aria-label="Selected projects">
           <ProjectGrid />
         </section>
         <section className="closing-band" aria-labelledby="work-contact-title">

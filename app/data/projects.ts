@@ -16,12 +16,12 @@ export const showcaseProjects = [
     url: "https://witty-games.ejwit004.workers.dev/",
   },
   {
-    id: "roster",
-    name: "Roster IQ",
-    category: "Fantasy football",
-    description: "Look up player rankings, compare trades, and research roster moves for your league.",
-    mark: "R",
-    url: "https://roster-iq.ejwit004.workers.dev/",
+    id: "earthware",
+    name: "Earthware Sustainable Goods",
+    category: "Retail website",
+    description: "A website for a sustainable goods and refill shop in Skippack Village, with online shopping, store information, and events.",
+    mark: "E",
+    url: "https://earthwaresg.com/",
   },
   {
     id: "portfolio",

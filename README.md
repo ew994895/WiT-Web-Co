@@ -13,7 +13,7 @@ explains client-controlled accounts, source and licensing handoff on full
 payment, third-party costs, and optional support; and links to a detailed
 approach page. An interactive example switches between three explicitly
 fictional business designs. The Work page includes WiT Lead Finder alongside
-Witty Games, Roster IQ, and the personal portfolio. AI additions are deferred.
+Witty Games, Earthware Sustainable Goods, and the personal portfolio. AI additions are deferred.
 
 WiT Lead Finder is separately published at
 https://wit-lead-finder.ejwit004.workers.dev/ with source at
@@ -56,7 +56,7 @@ after publishing. Deployment preserves dashboard-set variables and secrets.
 ## What's included
 
 - Responsive landing page and mobile navigation
-- Four independent projects: WiT Lead Finder, Witty Games, Roster IQ, and Witty’s Website
+- Four selected projects: WiT Lead Finder, Witty Games, Earthware Sustainable Goods, and Witty’s Website
 - Work, services, founder, process, privacy, and contact sections
 - Skip navigation, keyboard-accessible mobile menu, and visible focus states
 - Canonical, social preview, sitemap, robots, structured data, and branded icon metadata
@@ -135,7 +135,7 @@ not use forced package downgrades as a substitute for a tested tooling update.
 
 ## Project showcase
 
-The homepage links to four independent products on the Work page. The gallery
+The homepage links to four selected projects on the Work page. The gallery
 uses the original Witty Games and Witty’s Website marks and links to each live
 project.
 

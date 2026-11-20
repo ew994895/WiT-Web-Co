@@ -86,12 +86,13 @@ test("serves dedicated services and work pages", async () => {
   assert.match(workHtml, /WiT Lead Finder/);
   assert.match(workHtml, /https:\/\/wit-lead-finder\.ejwit004\.workers\.dev/);
   assert.match(workHtml, /Witty Games/);
-  assert.match(workHtml, /Roster IQ/);
+  assert.match(workHtml, /Earthware Sustainable Goods/);
+  assert.doesNotMatch(workHtml, /Roster IQ|roster-iq/);
   assert.match(workHtml, /Witty’s Website/);
 
-  assert.match(workHtml, /Personal products and experiments/i);
+  assert.match(workHtml, /business websites, personal products, and experiments/i);
   assert.match(workHtml, /https:\/\/witty-games\.ejwit004\.workers\.dev/i);
-  assert.match(workHtml, /https:\/\/roster-iq\.ejwit004\.workers\.dev/i);
+  assert.match(workHtml, /https:\/\/earthwaresg\.com\//i);
   assert.match(workHtml, /<link(?=[^>]*\brel="canonical")(?=[^>]*\bhref="https:\/\/witwebco\.com\/work")[^>]*>/i);
 });
 
